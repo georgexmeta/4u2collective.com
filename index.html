@@ -22,11 +22,11 @@
   --card: #0a0a0a;
   --border: #1a1a1a;
 
-  /* HEAVY GLOW VARIABLES */
-  --glow-green: 0 0 2px #00ff41, 0 0 4px #00ff41, 0 0 8px #00ff41, 0 0 16px #00ff41, 0 0 32px #00ff41;
-  --glow-cyan: 0 0 2px #00ffff, 0 0 4px #00ffff, 0 0 8px #00ffff, 0 0 16px #00ffff;
-  --glow-mag: 0 0 2px #ff00ff, 0 0 4px #ff00ff, 0 0 8px #ff00ff, 0 0 16px #ff00ff;
-  --glow-yellow: 0 0 2px #ffff00, 0 0 4px #ffff00, 0 0 8px #ffff00;
+  /* SOFT GLOW VARIABLES */
+  --glow-green: 0 0 5px rgba(0,255,65,0.25), 0 0 10px rgba(0,255,65,0.1);
+  --glow-cyan: 0 0 5px rgba(0,255,255,0.25), 0 0 10px rgba(0,255,255,0.1);
+  --glow-mag: 0 0 5px rgba(255,0,255,0.25), 0 0 10px rgba(255,0,255,0.1);
+  --glow-yellow: 0 0 5px rgba(255,255,0,0.2);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -94,7 +94,7 @@ body::before {
 
 @keyframes textFlicker {
   0%, 100% { text-shadow: var(--glow-green); }
-  50% { text-shadow: var(--glow-green), 0 0 30px #00ff41; }
+  50% { text-shadow: var(--glow-green), 0 0 10px rgba(0,255,65,0.15); }
 }
 
 @keyframes marquee {

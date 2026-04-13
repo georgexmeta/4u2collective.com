@@ -4,1059 +4,1280 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>4U2 COLLECTIVE</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+/* ══════════════════════════════════════════
+   4U2 COLLECTIVE — ARCADE EDITION v2.0
+   ══════════════════════════════════════════ */
+
 :root {
- --bg: #0a0a0a;
- --fg: #f0ece4;
- --accent: #e8ff00;
- --accent2: #ff3d00;
- --muted: #666;
- --card-bg: #141414;
- --border: #222;
- --font-display: 'Bebas Neue', sans-serif;
- --font-body: 'Outfit', sans-serif;
- --font-editorial: 'Playfair Display', serif;
+  --bg: #050505;
+  --green: #00ff41;
+  --cyan: #00ffff;
+  --magenta: #ff00ff;
+  --yellow: #ffff00;
+  --red: #ff3131;
+  --white: #f0f0f0;
+  --muted: #333;
+  --card: #0a0a0a;
+  --border: #1a1a1a;
+
+  /* HEAVY GLOW VARIABLES */
+  --glow-green: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 80px #00ff41;
+  --glow-cyan: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+  --glow-mag: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+  --glow-yellow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* SCROLLBAR */
 html {
-scroll-behavior: smooth;
-scrollbar-width: thin;
-scrollbar-color: var(--accent) var(--bg);
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green) var(--bg);
 }
 
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green); box-shadow: var(--glow-green); }
+
+/* BODY */
 body {
-background: var(--bg);
-color: var(--fg);
-font-family: var(--font-body);
-overflow-x: hidden;
--webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'VT323', monospace;
+  overflow-x: hidden;
+  position: relative;
+  cursor: crosshair;
 }
 
-::selection {
-background: var(--accent);
-color: var(--bg);
+/* ─── CRT SCANLINES (HEAVY) ─── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0,0,0,0.3) 1px,
+    rgba(0,0,0,0.3) 2px
+  );
+  pointer-events: none;
+  z-index: 9999;
 }
+
+/* ─── GRID BACKGROUND (PROMINENT) ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,65,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,65,0.06) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── FLICKER ANIMATION ─── */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.85; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes textFlicker {
+  0%, 100% { text-shadow: var(--glow-green); }
+  50% { text-shadow: var(--glow-green), 0 0 30px #00ff41; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--glow-green); }
+  50% { box-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 80px #00ff41, 0 0 120px #00ff41; }
+}
+
+@keyframes scanmove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+body { animation: flicker 4s infinite; }
 
 /* ─── NAV ─── */
 nav {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-z-index: 100;
-padding: 1.25rem 2.5rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-backdrop-filter: blur(20px);
-background: rgba(10,10,10,0.7);
-border-bottom: 1px solid var(--border);
-transition: transform 0.4s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5,5,5,0.97);
+  border-bottom: 2px solid var(--green);
+  box-shadow: 0 0 30px rgba(0,255,65,0.3);
 }
 
 .logo {
-font-family: var(--font-display);
-font-size: 1.8rem;
-letter-spacing: 0.15em;
-color: var(--fg);
-text-decoration: none;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  animation: textFlicker 3s infinite;
 }
 
-.logo span { color: var(--accent); }
+.logo span { color: var(--cyan); text-shadow: var(--glow-cyan); }
 
 .nav-links {
-display: flex;
-gap: 2rem;
-list-style: none;
+  display: flex;
+  gap: 2rem;
+  list-style: none;
 }
 
 .nav-links a {
-color: var(--muted);
-text-decoration: none;
-font-size: 0.85rem;
-font-weight: 500;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-transition: color 0.3s;
-position: relative;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  position: relative;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid transparent;
+}
+
+.nav-links a::before {
+  content: '[ ';
+  color: var(--green);
+  opacity: 0;
 }
 
 .nav-links a::after {
-content: '';
-position: absolute;
-bottom: -4px;
-left: 0;
-width: 0;
-height: 1px;
-background: var(--accent);
-transition: width 0.3s;
+  content: ' ]';
+  color: var(--green);
+  opacity: 0;
 }
 
-.nav-links a:hover { color: var(--fg); }
-.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover {
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  border-color: var(--cyan);
+  background: rgba(0,255,255,0.05);
+}
+
+.nav-links a:hover::before,
+.nav-links a:hover::after { opacity: 1; }
 
 .menu-toggle {
-display: none;
-background: none;
-border: none;
-color: var(--fg);
-font-size: 1.5rem;
-cursor: pointer;
+  display: none;
+  background: none;
+  border: 2px solid var(--green);
+  color: var(--green);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  box-shadow: var(--glow-green);
+  text-transform: uppercase;
 }
 
 /* ─── HERO ─── */
 .hero {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-position: relative;
-overflow: hidden;
-padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  z-index: 1;
+  border: 2px solid transparent;
+}
+
+/* CORNER DECORATIONS */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: var(--green);
+  border-style: solid;
+  opacity: 0.5;
 }
 
 .hero::before {
-content: '';
-position: absolute;
-inset: 0;
-background:
-radial-gradient(ellipse at 20% 50%, rgba(232,255,0,0.06) 0%, transparent 60%),
-radial-gradient(ellipse at 80% 30%, rgba(255,61,0,0.04) 0%, transparent 50%);
-pointer-events: none;
+  top: 5rem;
+  left: 2rem;
+  border-width: 3px 0 0 3px;
 }
 
-.hero-grain {
-position: absolute;
-inset: 0;
-opacity: 0.035;
-background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-background-size: 128px;
-pointer-events: none;
+.hero::after {
+  bottom: 3rem;
+  right: 2rem;
+  border-width: 0 3px 3px 0;
 }
 
 .hero-tag {
-font-size: 0.75rem;
-letter-spacing: 0.4em;
-text-transform: uppercase;
-color: var(--accent);
-margin-bottom: 1.5rem;
-opacity: 0;
-animation: fadeUp 0.8s ease 0.2s forwards;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--magenta);
+  text-shadow: var(--glow-mag);
+  margin-bottom: 3rem;
+  animation: blink 0.8s step-end infinite;
+  border: 1px solid var(--magenta);
+  padding: 0.5rem 1rem;
+  background: rgba(255,0,255,0.05);
+}
+
+.hero-title-wrap {
+  position: relative;
+  margin-bottom: 2rem;
 }
 
 .hero h1 {
-font-family: var(--font-display);
-font-size: clamp(4rem, 14vw, 12rem);
-line-height: 0.9;
-letter-spacing: 0.04em;
-opacity: 0;
-animation: fadeUp 0.8s ease 0.4s forwards;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(3rem, 12vw, 10rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  animation: textFlicker 2s infinite;
+  position: relative;
+  display: block;
+}
+
+/* DOUBLE TEXT EFFECT */
+.hero h1::before {
+  content: '4U2';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  clip-path: inset(0 0 50% 0);
+  opacity: 0.4;
+  animation: textFlicker 2.3s infinite;
 }
 
 .hero h1 .line2 {
-display: block;
-color: var(--accent);
-font-size: 0.55em;
-letter-spacing: 0.2em;
+  display: block;
+  font-size: clamp(1rem, 4vw, 3.5rem);
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  letter-spacing: 0.3em;
+  margin-top: 0.5rem;
+  animation: textFlicker 2.5s infinite;
 }
 
 .hero-sub {
-font-size: 1rem;
-color: var(--muted);
-max-width: 500px;
-margin-top: 1.5rem;
-line-height: 1.7;
-font-weight: 300;
-opacity: 0;
-animation: fadeUp 0.8s ease 0.6s forwards;
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  color: #555;
+  max-width: 600px;
+  margin-top: 2rem;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+  border-left: 3px solid var(--green);
+  padding-left: 1rem;
+  text-align: left;
+  background: rgba(0,255,65,0.02);
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
+}
+
+.hero-sub em {
+  color: var(--magenta);
+  font-style: normal;
+  text-shadow: var(--glow-mag);
 }
 
 .hero-cta {
-display: inline-flex;
-gap: 1rem;
-margin-top: 2.5rem;
-opacity: 0;
-animation: fadeUp 0.8s ease 0.8s forwards;
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
+/* CHUNKY ARCADE BUTTONS */
 .btn {
-padding: 0.85rem 2.2rem;
-font-family: var(--font-body);
-font-size: 0.8rem;
-font-weight: 600;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-text-decoration: none;
-border: none;
-cursor: pointer;
-transition: all 0.35s ease;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  padding: 1.2rem 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: all 0.1s;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  display: inline-block;
 }
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px solid currentColor;
+  clip-path: inset(2px 2px 0 0);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.btn:hover::before { opacity: 1; }
 
 .btn-primary {
-background: var(--accent);
-color: var(--bg);
+  background: var(--green);
+  color: var(--bg);
+  box-shadow: var(--glow-green), inset 0 0 20px rgba(0,255,65,0.3);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 .btn-primary:hover {
-background: #fff;
-transform: translateY(-2px);
-box-shadow: 0 8px 30px rgba(232,255,0,0.2);
+  background: var(--cyan);
+  box-shadow: var(--glow-cyan), inset 0 0 20px rgba(0,255,255,0.3);
+  color: var(--bg);
+  transform: translate(-3px, -3px);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 .btn-outline {
-background: transparent;
-color: var(--fg);
-border: 1px solid var(--border);
+  background: transparent;
+  color: var(--magenta);
+  border: 3px solid var(--magenta);
+  box-shadow: var(--glow-mag), inset 0 0 10px rgba(255,0,255,0.1);
 }
 
 .btn-outline:hover {
-border-color: var(--fg);
-transform: translateY(-2px);
+  background: var(--magenta);
+  color: var(--bg);
+  box-shadow: var(--glow-mag);
+  transform: translate(-3px, -3px);
 }
 
-.scroll-indicator {
-position: absolute;
-bottom: 2.5rem;
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 0.5rem;
-opacity: 0;
-animation: fadeUp 0.8s ease 1.2s forwards;
+/* INSERT COIN — BIGGER AND MORE PROMINENT */
+.insert-coin {
+  margin-top: 4rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  color: var(--yellow);
+  text-shadow: var(--glow-yellow);
+  animation: blink 0.6s step-end infinite;
+  letter-spacing: 0.2em;
+  border: 2px solid var(--yellow);
+  padding: 0.8rem 1.5rem;
+  background: rgba(255,255,0,0.05);
+  position: relative;
 }
 
-.scroll-indicator span {
-font-size: 0.65rem;
-letter-spacing: 0.3em;
-text-transform: uppercase;
-color: var(--muted);
+.insert-coin::before {
+  content: '►►';
+  margin-right: 0.8rem;
 }
 
-.scroll-line {
-width: 1px;
-height: 40px;
-background: linear-gradient(to bottom, var(--accent), transparent);
-animation: scrollPulse 2s ease-in-out infinite;
+.insert-coin::after {
+  content: '◄◄';
+  margin-left: 0.8rem;
 }
 
 /* ─── MARQUEE ─── */
 .marquee {
-padding: 1.2rem 0;
-border-top: 1px solid var(--border);
-border-bottom: 1px solid var(--border);
-overflow: hidden;
-white-space: nowrap;
+  padding: 1.2rem 0;
+  border-top: 3px solid var(--green);
+  border-bottom: 3px solid var(--green);
+  overflow: hidden;
+  white-space: nowrap;
+  background: rgba(0,255,65,0.05);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0,255,65,0.2);
 }
 
 .marquee-inner {
-display: inline-flex;
-animation: marquee 25s linear infinite;
+  display: inline-flex;
+  animation: marquee 15s linear infinite;
 }
 
 .marquee-item {
-font-family: var(--font-display);
-font-size: 1.1rem;
-letter-spacing: 0.3em;
-text-transform: uppercase;
-color: var(--muted);
-padding: 0 2rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  padding: 0 2rem;
 }
 
 .marquee-item .dot {
-color: var(--accent);
-margin-right: 2rem;
+  color: var(--magenta);
+  text-shadow: var(--glow-mag);
+  margin-right: 2rem;
 }
 
 /* ─── SECTIONS ─── */
 section {
-padding: 6rem 2.5rem;
+  padding: 7rem 2.5rem;
+  position: relative;
+  z-index: 1;
+  border-bottom: 2px solid var(--border);
 }
 
 .section-label {
-font-size: 0.7rem;
-letter-spacing: 0.4em;
-text-transform: uppercase;
-color: var(--accent);
-margin-bottom: 0.75rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  margin-bottom: 1rem;
+  text-shadow: var(--glow-mag);
+  display: inline-block;
+  border: 1px solid var(--magenta);
+  padding: 0.3rem 0.8rem;
+  background: rgba(255,0,255,0.05);
 }
 
 .section-title {
-font-family: var(--font-display);
-font-size: clamp(2.5rem, 5vw, 4.5rem);
-letter-spacing: 0.05em;
-line-height: 1;
-margin-bottom: 1.5rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--magenta);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title span {
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  display: block;
 }
 
 .section-desc {
-color: var(--muted);
-font-weight: 300;
-line-height: 1.8;
-max-width: 560px;
-font-size: 0.95rem;
+  color: #555;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 600px;
+  letter-spacing: 0.05em;
+  border-left: 3px solid var(--green);
+  padding-left: 1.5rem;
 }
 
 /* ─── DISCIPLINES ─── */
-.disciplines {
-max-width: 1200px;
-margin: 0 auto;
-}
+.disciplines { max-width: 1200px; margin: 0 auto; }
 
 .disciplines-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 1px;
-background: var(--border);
-margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 4px;
+  background: var(--green);
+  margin-top: 3rem;
+  box-shadow: var(--glow-green);
 }
 
 .discipline-card {
-background: var(--bg);
-padding: 2.5rem 2rem;
-position: relative;
-overflow: hidden;
-transition: all 0.4s ease;
-cursor: default;
+  background: var(--bg);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: all 0.1s;
+  cursor: default;
+  border: 2px solid transparent;
 }
 
+.discipline-card:hover {
+  background: #020202;
+  border-color: var(--green);
+  box-shadow: inset 0 0 30px rgba(0,255,65,0.1), 0 0 20px rgba(0,255,65,0.2);
+}
+
+/* DISCCADE CURSOR */
 .discipline-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 2px;
-background: var(--accent);
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.4s ease;
+  content: '►';
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0;
+  transition: opacity 0.1s;
 }
 
-.discipline-card:hover::before { transform: scaleX(1); }
-.discipline-card:hover { background: var(--card-bg); }
+.discipline-card:hover::before { opacity: 1; }
 
+/* DISCCADE ICON */
 .discipline-icon {
-font-size: 2rem;
-margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 8px var(--cyan));
+  display: block;
 }
 
 .discipline-card h3 {
-font-family: var(--font-display);
-font-size: 1.4rem;
-letter-spacing: 0.1em;
-margin-bottom: 0.5rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  border-bottom: 2px solid var(--green);
+  padding-bottom: 0.5rem;
+  display: inline-block;
 }
 
 .discipline-card p {
-font-size: 0.8rem;
-color: var(--muted);
-line-height: 1.6;
-font-weight: 300;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
 }
 
-/* ─── PORTFOLIO / GALLERY ─── */
-.gallery {
-max-width: 1400px;
-margin: 0 auto;
-}
+/* ─── GALLERY ─── */
+.gallery { max-width: 1400px; margin: 0 auto; }
 
 .gallery-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 2px;
-margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 3rem;
+  background: var(--green);
+  box-shadow: var(--glow-green);
 }
 
 .gallery-item {
-position: relative;
-aspect-ratio: 1;
-overflow: hidden;
-background: var(--card-bg);
-cursor: pointer;
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--card);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.1s;
+}
+
+.gallery-item:hover {
+  border-color: var(--green);
+  box-shadow: inset 0 0 20px rgba(0,255,65,0.1);
+  z-index: 1;
 }
 
 .gallery-item img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.6s ease, filter 0.4s ease;
-filter: grayscale(30%) brightness(0.85);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.2s;
+  filter: grayscale(80%) sepia(30%) hue-rotate(90deg) brightness(0.5) contrast(1.2);
 }
 
 .gallery-item:hover img {
-transform: scale(1.08);
-filter: grayscale(0%) brightness(1);
+  transform: scale(1.1);
+  filter: grayscale(0%) brightness(0.8);
 }
 
 .gallery-overlay {
-position: absolute;
-inset: 0;
-background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-padding: 1.5rem;
-opacity: 0;
-transition: opacity 0.4s ease;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,5,5,0.98) 0%, rgba(5,5,5,0.5) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.1s;
+  border-top: 2px solid var(--green);
 }
 
 .gallery-item:hover .gallery-overlay { opacity: 1; }
 
 .gallery-overlay h4 {
-font-family: var(--font-display);
-font-size: 1.2rem;
-letter-spacing: 0.1em;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  text-shadow: var(--glow-green);
 }
 
 .gallery-overlay span {
-font-size: 0.7rem;
-color: var(--accent);
-letter-spacing: 0.2em;
-text-transform: uppercase;
-margin-top: 0.25rem;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
 }
 
 .gallery-item.featured {
-grid-column: span 2;
-grid-row: span 2;
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
-/* placeholder shimmer for gallery */
 .gallery-placeholder {
-background: linear-gradient(135deg, var(--card-bg) 0%, #1a1a1a 50%, var(--card-bg) 100%);
-background-size: 200% 200%;
-animation: shimmer 3s ease-in-out infinite;
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: var(--font-display);
-font-size: 1.5rem;
-letter-spacing: 0.15em;
-color: #333;
+  width: 100%;
+  height: 100%;
+  background: var(--card);
+  border: 2px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #1a1a1a;
+  letter-spacing: 0.1em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* DOTS PATTERN FOR PLACEHOLDERS */
+.gallery-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,255,65,0.08) 1px, transparent 1px);
+  background-size: 15px 15px;
 }
 
 /* ─── EVENTS ─── */
-.events {
-max-width: 1000px;
-margin: 0 auto;
-}
+.events { max-width: 1000px; margin: 0 auto; }
 
-.events-list {
-margin-top: 3rem;
-display: flex;
-flex-direction: column;
-}
+.events-list { margin-top: 3rem; }
 
 .event-row {
-display: grid;
-grid-template-columns: 100px 1fr auto;
-align-items: center;
-gap: 2rem;
-padding: 1.8rem 0;
-border-bottom: 1px solid var(--border);
-transition: all 0.3s ease;
-cursor: pointer;
-text-decoration: none;
-color: var(--fg);
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid #111;
+  margin-bottom: 4px;
+  transition: all 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--white);
+  position: relative;
+  background: var(--card);
+}
+
+.event-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--green);
+  transition: width 0.1s;
 }
 
 .event-row:hover {
-padding-left: 1rem;
-border-color: var(--accent);
+  border-color: var(--green);
+  background: rgba(0,255,65,0.03);
+  box-shadow: inset 0 0 30px rgba(0,255,65,0.05);
+  padding-left: 2rem;
 }
 
-.event-date {
-text-align: center;
-}
+.event-row:hover::before { width: 4px; }
+
+.event-date { text-align: center; }
 
 .event-date .month {
-font-size: 0.65rem;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(--accent);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-shadow: var(--glow-green);
 }
 
 .event-date .day {
-font-family: var(--font-display);
-font-size: 2.5rem;
-line-height: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--magenta);
 }
 
 .event-info h4 {
-font-family: var(--font-display);
-font-size: 1.3rem;
-letter-spacing: 0.08em;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  margin-bottom: 0.5rem;
 }
 
 .event-info p {
-font-size: 0.8rem;
-color: var(--muted);
-margin-top: 0.25rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #555;
+  letter-spacing: 0.05em;
 }
 
 .event-badge {
-font-size: 0.65rem;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-padding: 0.4rem 1rem;
-border: 1px solid var(--border);
-color: var(--muted);
-white-space: nowrap;
-transition: all 0.3s;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  padding: 0.6rem 1rem;
+  border: 2px solid #222;
+  color: #444;
+  white-space: nowrap;
+  transition: all 0.1s;
 }
 
 .event-row:hover .event-badge {
-border-color: var(--accent);
-color: var(--accent);
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: var(--glow-green);
+  text-shadow: var(--glow-green);
 }
 
 /* ─── ABOUT ─── */
-.about {
-max-width: 1000px;
-margin: 0 auto;
-}
+.about { max-width: 1000px; margin: 0 auto; }
 
 .about-content {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-margin-top: 3rem;
-align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: start;
 }
 
 .about-text {
-font-size: 0.95rem;
-color: var(--muted);
-line-height: 1.9;
-font-weight: 300;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
 }
 
 .about-text em {
-font-family: var(--font-editorial);
-color: var(--fg);
-font-style: italic;
-font-size: 1.05em;
+  color: var(--green);
+  font-style: normal;
+  text-shadow: var(--glow-green);
+  background: rgba(0,255,65,0.05);
+  padding: 0 0.3rem;
 }
 
 .about-stats {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--green);
+  box-shadow: var(--glow-green);
 }
 
 .stat {
-padding: 1.5rem;
-border-left: 1px solid var(--border);
+  background: var(--bg);
+  padding: 2rem 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.1s;
+}
+
+.stat:hover {
+  border-color: var(--green);
+  background: rgba(0,255,65,0.03);
 }
 
 .stat-num {
-font-family: var(--font-display);
-font-size: 2.8rem;
-color: var(--accent);
-line-height: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.5rem;
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
 .stat-label {
-font-size: 0.7rem;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(--muted);
-margin-top: 0.4rem;
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #444;
 }
 
-/* ─── CONTACT / CTA ─── */
+/* ─── CONTACT ─── */
 .contact {
-max-width: 700px;
-margin: 0 auto;
-text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid var(--green);
+  box-shadow: var(--glow-green);
+  background: rgba(0,255,65,0.02);
 }
 
 .contact-form {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-margin-top: 2.5rem;
-text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+  text-align: left;
+  padding: 0 2rem 2rem;
 }
 
 .input-row {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .contact-form input,
 .contact-form textarea {
-background: var(--card-bg);
-border: 1px solid var(--border);
-padding: 1rem 1.2rem;
-color: var(--fg);
-font-family: var(--font-body);
-font-size: 0.85rem;
-font-weight: 300;
-transition: border-color 0.3s;
-outline: none;
-resize: vertical;
+  background: var(--card);
+  border: 2px solid #1a1a1a;
+  padding: 1rem;
+  color: var(--green);
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  transition: border-color 0.1s, box-shadow 0.1s;
+  outline: none;
+  resize: vertical;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-border-color: var(--accent);
+  border-color: var(--green);
+  box-shadow: var(--glow-green), inset 0 0 10px rgba(0,255,65,0.05);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-color: #444;
+  color: #2a2a2a;
+  font-family: 'VT323', monospace;
 }
 
-.contact-form textarea { min-height: 120px; }
+.contact-form textarea { min-height: 140px; }
 
 .form-footer {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .email-opt {
-display: flex;
-align-items: center;
-gap: 0.5rem;
-font-size: 0.75rem;
-color: var(--muted);
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: #444;
+  cursor: pointer;
+  letter-spacing: 0.05em;
 }
 
 .email-opt input[type="checkbox"] {
-accent-color: var(--accent);
+  accent-color: var(--green);
+  width: 18px;
+  height: 18px;
 }
 
 /* ─── FOOTER ─── */
 footer {
-padding: 3rem 2.5rem 2rem;
-border-top: 1px solid var(--border);
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 1rem;
+  padding: 3rem 2.5rem 2rem;
+  border-top: 3px solid var(--green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+  background: rgba(0,255,65,0.02);
 }
 
 .footer-brand {
-font-family: var(--font-display);
-font-size: 1.2rem;
-letter-spacing: 0.15em;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  text-shadow: var(--glow-green);
+  animation: textFlicker 3s infinite;
 }
 
-.footer-brand span { color: var(--accent); }
+.footer-brand span { color: var(--cyan); text-shadow: var(--glow-cyan); }
 
 .footer-links {
-display: flex;
-gap: 1.5rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .footer-links a {
-color: var(--muted);
-text-decoration: none;
-font-size: 0.75rem;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-transition: color 0.3s;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #333;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  border: 1px solid transparent;
+  padding: 0.3rem 0.5rem;
 }
 
-.footer-links a:hover { color: var(--accent); }
+.footer-links a:hover {
+  color: var(--cyan);
+  text-shadow: var(--glow-cyan);
+  border-color: var(--cyan);
+  background: rgba(0,255,255,0.05);
+}
 
 .footer-copy {
-width: 100%;
-text-align: center;
-font-size: 0.7rem;
-color: #333;
-margin-top: 1.5rem;
-letter-spacing: 0.1em;
+  width: 100%;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: #1a1a1a;
+  margin-top: 1.5rem;
+  letter-spacing: 0.15em;
 }
 
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(30px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scrollPulse {
-0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-50% { opacity: 1; transform: scaleY(1); }
-}
-
-@keyframes marquee {
-from { transform: translateX(0); }
-to { transform: translateX(-50%); }
-}
-
-@keyframes shimmer {
-0%, 100% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-}
-
-/* reveal on scroll */
+/* ─── REVEAL ─── */
 .reveal {
-opacity: 0;
-transform: translateY(40px);
-transition: opacity 0.7s ease, transform 0.7s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .reveal.visible {
-opacity: 1;
-transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-nav { padding: 1rem 1.5rem; }
+  nav { padding: 0.8rem 1.2rem; }
+  .logo { font-size: 0.7rem; }
 
-.nav-links {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: var(--bg);
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 2rem;
-z-index: 99;
-}
+  .nav-links {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5,5,5,0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    z-index: 99;
+    border: 2px solid var(--green);
+    box-shadow: inset 0 0 50px rgba(0,255,65,0.1);
+  }
 
-.nav-links.open { display: flex; }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1.5rem; color: var(--green); }
+  .menu-toggle { display: block; z-index: 101; }
 
-.nav-links a { font-size: 1.2rem; }
+  section { padding: 4rem 1.2rem; }
 
-.menu-toggle { display: block; z-index: 101; }
+  .hero h1 { font-size: clamp(2.5rem, 15vw, 5rem); }
+  .hero-tag { font-size: 0.45rem; }
+  .insert-coin { font-size: 0.5rem; padding: 0.5rem 1rem; }
 
-section { padding: 4rem 1.5rem; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item.featured { grid-column: span 2; grid-row: span 1; aspect-ratio: 2/1; }
 
-.gallery-grid {
-grid-template-columns: 1fr 1fr;
-}
+  .about-content { grid-template-columns: 1fr; gap: 2rem; }
 
-.gallery-item.featured {
-grid-column: span 2;
-grid-row: span 1;
-aspect-ratio: 2/1;
-}
+  .event-row { grid-template-columns: 70px 1fr; gap: 1rem; }
+  .event-badge { display: none; }
 
-.about-content {
-grid-template-columns: 1fr;
-gap: 2.5rem;
-}
+  .input-row { grid-template-columns: 1fr; }
+  .form-footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
 
-.event-row {
-grid-template-columns: 80px 1fr;
-gap: 1rem;
-}
-
-.event-badge { display: none; }
-
-.input-row { grid-template-columns: 1fr; }
-
-.form-footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .footer-links { gap: 1rem; }
+  .footer-links a { font-size: 0.4rem; }
 }
 </style>
-
 </head>
 <body>
 
-<!-- NAV -->
-
 <nav>
- <a href="#" class="logo">4U2<span>.</span></a>
- <ul class="nav-links" id="navLinks">
- <li><a href="#disciplines">Disciplines</a></li>
- <li><a href="#gallery">Gallery</a></li>
- <li><a href="#events">Events</a></li>
- <li><a href="#about">About</a></li>
- <li><a href="#contact">Contact</a></li>
- </ul>
- <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+  <a href="#" class="logo">4U2<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#disciplines">Disciplines</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">MENU</button>
 </nav>
 
-<!-- HERO -->
-
 <section class="hero" id="hero">
- <div class="hero-grain"></div>
- <p class="hero-tag">Music &bull; Fashion &bull; Art &bull; AI &bull; Events</p>
- <h1>
- 4U2
- <span class="line2">COLLECTIVE</span>
- </h1>
- <p class="hero-sub">A multi-disciplinary creative collective building at the intersection of culture, technology, and community.</p>
- <div class="hero-cta">
- <a href="#gallery" class="btn btn-primary">View Work</a>
- <a href="#contact" class="btn btn-outline">Get In Touch</a>
- </div>
- <div class="scroll-indicator">
- <span>Scroll</span>
- <div class="scroll-line"></div>
- </div>
-</section>
+  <p class="hero-tag">▶ MUSIC · FASHION · ART · AI · EVENTS ◀</p>
 
-<!-- MARQUEE -->
+  <div class="hero-title-wrap">
+    <h1>
+      4U2
+      <span class="line2">COLLECTIVE</span>
+    </h1>
+  </div>
+
+  <p class="hero-sub">
+    // A multi-disciplinary creative collective<br>
+    building at the intersection of<br>
+    <em>culture, technology,</em> and <em>community.</em>
+  </p>
+
+  <div class="hero-cta">
+    <a href="#gallery" class="btn btn-primary">▶ VIEW WORK</a>
+    <a href="#contact" class="btn btn-outline">■ CONNECT</a>
+  </div>
+
+  <p class="insert-coin">INSERT COIN TO CONTINUE</p>
+</section>
 
 <div class="marquee">
- <div class="marquee-inner">
- <span class="marquee-item"><span class="dot">&#9679;</span>MUSIC</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>FASHION</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>APPAREL</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>ART</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>PROMPT ENGINEERING</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>IRL EVENTS</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>COMMUNITY</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>MUSIC</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>FASHION</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>APPAREL</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>ART</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>PROMPT ENGINEERING</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>IRL EVENTS</span>
- <span class="marquee-item"><span class="dot">&#9679;</span>COMMUNITY</span>
- </div>
+  <div class="marquee-inner">
+    <span class="marquee-item"><span class="dot">■</span>MUSIC</span>
+    <span class="marquee-item"><span class="dot">■</span>FASHION</span>
+    <span class="marquee-item"><span class="dot">■</span>APPAREL</span>
+    <span class="marquee-item"><span class="dot">■</span>ART</span>
+    <span class="marquee-item"><span class="dot">■</span>PROMPT ENGINEERING</span>
+    <span class="marquee-item"><span class="dot">■</span>IRL EVENTS</span>
+    <span class="marquee-item"><span class="dot">■</span>COMMUNITY</span>
+    <span class="marquee-item"><span class="dot">■</span>MUSIC</span>
+    <span class="marquee-item"><span class="dot">■</span>FASHION</span>
+    <span class="marquee-item"><span class="dot">■</span>APPAREL</span>
+    <span class="marquee-item"><span class="dot">■</span>ART</span>
+    <span class="marquee-item"><span class="dot">■</span>PROMPT ENGINEERING</span>
+    <span class="marquee-item"><span class="dot">■</span>IRL EVENTS</span>
+    <span class="marquee-item"><span class="dot">■</span>COMMUNITY</span>
+  </div>
 </div>
 
-<!-- DISCIPLINES -->
-
 <section id="disciplines" class="disciplines">
- <div class="reveal">
- <p class="section-label">What We Do</p>
- <h2 class="section-title">DISCIPLINES</h2>
- <p class="section-desc">We don't fit in one lane. 4U2 operates across culture — from studio sessions to gallery walls to the command line.</p>
- </div>
- <div class="disciplines-grid reveal">
- <div class="discipline-card">
- <div class="discipline-icon">&#9835;</div>
- <h3>MUSIC</h3>
- <p>Production, curation, and live performance. We craft soundscapes that move bodies and minds.</p>
- </div>
- <div class="discipline-card">
- <div class="discipline-icon">&#9874;</div>
- <h3>FASHION</h3>
- <p>Streetwear meets conceptual design. Limited drops, custom pieces, and wearable art.</p>
- </div>
- <div class="discipline-card">
- <div class="discipline-icon">&#9998;</div>
- <h3>ART</h3>
- <p>Digital and physical works that challenge perspective. From gallery installations to AI-generated pieces.</p>
- </div>
- <div class="discipline-card">
- <div class="discipline-icon">&#10095;</div>
- <h3>PROMPT ENG</h3>
- <p>Pushing the boundaries of AI-assisted creativity. Custom tools, workflows, and generative art.</p>
- </div>
- <div class="discipline-card">
- <div class="discipline-icon">&#9733;</div>
- <h3>EVENTS</h3>
- <p>IRL experiences that bring the community together. Pop-ups, showcases, and cultural programming.</p>
- </div>
- </div>
+  <div class="reveal">
+    <p class="section-label">// STAGE SELECT</p>
+    <h2 class="section-title">WHAT WE <span>DO</span></h2>
+    <p class="section-desc">We don't fit in one lane. 4U2 operates across culture — from studio sessions to gallery walls to the command line.</p>
+  </div>
+  <div class="disciplines-grid reveal">
+    <div class="discipline-card">
+      <span class="discipline-icon">♫</span>
+      <h3>MUSIC</h3>
+      <p>Production, curation, and live performance. We craft soundscapes that move bodies and minds.</p>
+    </div>
+    <div class="discipline-card">
+      <span class="discipline-icon">◈</span>
+      <h3>FASHION</h3>
+      <p>Streetwear meets conceptual design. Limited drops, custom pieces, and wearable art.</p>
+    </div>
+    <div class="discipline-card">
+      <span class="discipline-icon">✦</span>
+      <h3>ART</h3>
+      <p>Digital and physical works that challenge perspective. From gallery installations to AI-generated pieces.</p>
+    </div>
+    <div class="discipline-card">
+      <span class="discipline-icon">▶</span>
+      <h3>PROMPT ENG</h3>
+      <p>Pushing the boundaries of AI-assisted creativity. Custom tools, workflows, and generative art.</p>
+    </div>
+    <div class="discipline-card">
+      <span class="discipline-icon">★</span>
+      <h3>EVENTS</h3>
+      <p>IRL experiences that bring the community together. Pop-ups, showcases, and cultural programming.</p>
+    </div>
+  </div>
 </section>
-
-<!-- GALLERY -->
 
 <section id="gallery" class="gallery">
- <div class="reveal">
- <p class="section-label">Portfolio</p>
- <h2 class="section-title">SELECTED WORKS</h2>
- <p class="section-desc">A curated look at recent projects across our disciplines.</p>
- </div>
- <div class="gallery-grid reveal">
- <div class="gallery-item featured">
- <div class="gallery-placeholder">FEATURED PROJECT</div>
- <div class="gallery-overlay">
- <h4>UNTITLED 001</h4>
- <span>Mixed Media</span>
- </div>
- </div>
- <div class="gallery-item">
- <div class="gallery-placeholder">002</div>
- <div class="gallery-overlay">
- <h4>CAPSULE DROP</h4>
- <span>Fashion</span>
- </div>
- </div>
- <div class="gallery-item">
- <div class="gallery-placeholder">003</div>
- <div class="gallery-overlay">
- <h4>FREQUENCY</h4>
- <span>Music</span>
- </div>
- </div>
- <div class="gallery-item">
- <div class="gallery-placeholder">004</div>
- <div class="gallery-overlay">
- <h4>NEURAL BLOOM</h4>
- <span>AI Art</span>
- </div>
- </div>
- <div class="gallery-item">
- <div class="gallery-placeholder">005</div>
- <div class="gallery-overlay">
- <h4>NIGHT MARKET</h4>
- <span>Event</span>
- </div>
- </div>
- <div class="gallery-item">
- <div class="gallery-placeholder">006</div>
- <div class="gallery-overlay">
- <h4>WAVEFORM</h4>
- <span>Visual</span>
- </div>
- </div>
- </div>
+  <div class="reveal">
+    <p class="section-label">// PORTFOLIO.EXE</p>
+    <h2 class="section-title">SELECTED <span>WORKS</span></h2>
+    <p class="section-desc">A curated look at recent projects across our disciplines.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item featured">
+      <div class="gallery-placeholder">► FEATURED PROJECT</div>
+      <div class="gallery-overlay">
+        <h4>UNTITLED 001</h4>
+        <span>Mixed Media</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">002</div>
+      <div class="gallery-overlay">
+        <h4>CAPSULE DROP</h4>
+        <span>Fashion</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">003</div>
+      <div class="gallery-overlay">
+        <h4>FREQUENCY</h4>
+        <span>Music</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">004</div>
+      <div class="gallery-overlay">
+        <h4>NEURAL BLOOM</h4>
+        <span>AI Art</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">005</div>
+      <div class="gallery-overlay">
+        <h4>NIGHT MARKET</h4>
+        <span>Event</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">006</div>
+      <div class="gallery-overlay">
+        <h4>WAVEFORM</h4>
+        <span>Visual</span>
+      </div>
+    </div>
+  </div>
 </section>
-
-<!-- EVENTS -->
 
 <section id="events" class="events">
- <div class="reveal">
- <p class="section-label">What's Next</p>
- <h2 class="section-title">UPCOMING EVENTS</h2>
- </div>
- <div class="events-list reveal">
- <a href="#" class="event-row">
- <div class="event-date">
- <div class="month">MAY</div>
- <div class="day">17</div>
- </div>
- <div class="event-info">
- <h4>4U2 POP-UP: VOL. 1</h4>
- <p>Location TBA &mdash; Art, music, and limited apparel drop</p>
- </div>
- <div class="event-badge">RSVP</div>
- </a>
- <a href="#" class="event-row">
- <div class="event-date">
- <div class="month">JUN</div>
- <div class="day">08</div>
- </div>
- <div class="event-info">
- <h4>AI x ART SHOWCASE</h4>
- <p>Prompt engineering meets physical gallery &mdash; Interactive exhibit</p>
- </div>
- <div class="event-badge">SOON</div>
- </a>
- <a href="#" class="event-row">
- <div class="event-date">
- <div class="month">JUL</div>
- <div class="day">26</div>
- </div>
- <div class="event-info">
- <h4>SUMMER FREQUENCY</h4>
- <p>Outdoor music & culture festival &mdash; Full-day programming</p>
- </div>
- <div class="event-badge">COMING</div>
- </a>
- </div>
+  <div class="reveal">
+    <p class="section-label">// UPCOMING.DAT</p>
+    <h2 class="section-title">NEXT <span>LEVEL</span></h2>
+  </div>
+  <div class="events-list reveal">
+    <a href="#" class="event-row">
+      <div class="event-date">
+        <div class="month">MAY</div>
+        <div class="day">17</div>
+      </div>
+      <div class="event-info">
+        <h4>4U2 POP-UP: VOL. 1</h4>
+        <p>Location TBA — Art, music, and limited apparel drop</p>
+      </div>
+      <div class="event-badge">RSVP</div>
+    </a>
+    <a href="#" class="event-row">
+      <div class="event-date">
+        <div class="month">JUN</div>
+        <div class="day">08</div>
+      </div>
+      <div class="event-info">
+        <h4>AI x ART SHOWCASE</h4>
+        <p>Prompt engineering meets physical gallery — Interactive exhibit</p>
+      </div>
+      <div class="event-badge">SOON</div>
+    </a>
+    <a href="#" class="event-row">
+      <div class="event-date">
+        <div class="month">JUL</div>
+        <div class="day">26</div>
+      </div>
+      <div class="event-info">
+        <h4>SUMMER FREQUENCY</h4>
+        <p>Outdoor music & culture festival — Full-day programming</p>
+      </div>
+      <div class="event-badge">COMING</div>
+    </a>
+  </div>
 </section>
-
-<!-- ABOUT -->
 
 <section id="about" class="about">
- <div class="reveal">
- <p class="section-label">Who We Are</p>
- <h2 class="section-title">ABOUT 4U2</h2>
- </div>
- <div class="about-content reveal">
- <div class="about-text"><p>4U2 Collective is a creative movement born from the belief that <em>the best ideas live at the crossroads</em>. We bring together musicians, designers, visual artists, technologists, and community builders under one roof.</p>
- <br>
- <p>We're not just making things — we're building a culture. From limited apparel drops to AI-generated art installations, from underground shows to prompt engineering workshops, everything we do is <em>for you, too</em>.</p>
- </div>
- <div class="about-stats">
- <div class="stat">
- <div class="stat-num">5+</div>
- <div class="stat-label">Disciplines</div>
- </div>
- <div class="stat">
- <div class="stat-num">IRL</div>
- <div class="stat-label">Events</div>
- </div>
- <div class="stat">
- <div class="stat-num">AI</div>
- <div class="stat-label">Powered</div>
- </div>
- <div class="stat">
- <div class="stat-num">4U2</div>
- <div class="stat-label">Community</div>
- </div>
- </div>
- </div>
+  <div class="reveal">
+    <p class="section-label">// README.TXT</p>
+    <h2 class="section-title">ABOUT <span>4U2</span></h2>
+  </div>
+  <div class="about-content reveal">
+    <div class="about-text">
+      <p>4U2 Collective is a creative movement born from the belief that <em>the best ideas live at the crossroads</em>. We bring together musicians, designers, visual artists, technologists, and community builders under one roof.</p>
+      <br>
+      <p>We're not just making things — we're building a culture. From limited apparel drops to AI-generated art installations, from underground shows to prompt engineering workshops, everything we do is <em>for you, too</em>.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Disciplines</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">IRL</div>
+        <div class="stat-label">Events</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Powered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4U2</div>
+        <div class="stat-label">Community</div>
+      </div>
+    </div>
+  </div>
 </section>
-
-<!-- CONTACT -->
 
 <section id="contact" class="contact">
- <div class="reveal">
- <p class="section-label">Connect</p>
- <h2 class="section-title">GET IN TOUCH</h2>
- <p class="section-desc" style="margin: 0 auto;">Interested in collaborating, attending an event, or joining the collective? Drop us a line.</p>
- <div class="contact-form">
- <div class="input-row">
- <input type="text" placeholder="Name" required>
- <input type="email" placeholder="Email" required>
- </div>
- <input type="text" placeholder="Subject">
- <textarea placeholder="Your message..."></textarea>
- <div class="form-footer">
- <label class="email-opt">
- <input type="checkbox"> Sign up for updates, drops, and event invites
- </label>
- <button class="btn btn-primary" type="button">Send Message</button>
- </div>
- </div>
- </div>
+  <div class="reveal">
+    <p class="section-label">// CONNECT.EXE</p>
+    <h2 class="section-title">GET IN <span>TOUCH</span></h2>
+    <p class="section-desc" style="margin: 0 auto; text-align: center; border-left: none; border-top: 2px solid var(--green); border-bottom: 2px solid var(--green); padding: 1.5rem;">Interested in collaborating, attending an event, or joining the collective?<br>DROP US A LINE.</p>
+    <div class="contact-form">
+      <div class="input-row">
+        <input type="text" placeholder="> NAME_">
+        <input type="email" placeholder="> EMAIL_">
+      </div>
+      <input type="text" placeholder="> SUBJECT_">
+      <textarea placeholder="> MESSAGE_"></textarea>
+      <div class="form-footer">
+        <label class="email-opt">
+          <input type="checkbox"> SUBSCRIBE TO UPDATES
+        </label>
+        <button class="btn btn-primary" type="button">► SEND</button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-
 <footer>
- <div class="footer-brand">4U2<span>.</span></div>
- <div class="footer-links">
- <a href="#">Instagram</a>
- <a href="#">Twitter</a>
- <a href="#">SoundCloud</a>
- <a href="#">TikTok</a>
- </div>
- <p class="footer-copy">&copy; 2026 4U2 COLLECTIVE — ALL RIGHTS RESERVED</p>
+  <div class="footer-brand">4U2<span>.</span></div>
+  <div class="footer-links">
+    <a href="#">INSTAGRAM</a>
+    <a href="#">TWITTER</a>
+    <a href="#">SOUNDCLOUD</a>
+    <a href="#">TIKTOK</a>
+  </div>
+  <p class="footer-copy">© 2026 4U2 COLLECTIVE — ALL RIGHTS RESERVED — PLAYER 1 READY</p>
 </footer>
 
 <script>
-// Mobile menu
 const toggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 toggle.addEventListener('click', () => {
- navLinks.classList.toggle('open');
- toggle.innerHTML = navLinks.classList.contains('open') ? '&#10005;' : '&#9776;';
+  navLinks.classList.toggle('open');
+  toggle.textContent = navLinks.classList.contains('open') ? 'CLOSE' : 'MENU';
 });
 navLinks.querySelectorAll('a').forEach(a => {
- a.addEventListener('click', () => {
- navLinks.classList.remove('open');
- toggle.innerHTML = '&#9776;';
- });
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    toggle.textContent = 'MENU';
+  });
 });
 
-// Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
- entries.forEach(entry => {
- if (entry.isIntersecting) {
- entry.target.classList.add('visible');
- }
- });
-}, { threshold: 0.15 });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 </script>
 

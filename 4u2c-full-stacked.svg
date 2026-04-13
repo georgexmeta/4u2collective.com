@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 175" width="280" height="175">
-  <rect width="280" height="175" fill="#F7F9F8"/>
+  <rect width="280" height="175" fill="#0A0A0A"/>
   <!-- Corner accents - green and blue -->
   <line x1="20" y1="28" x2="38" y2="28" stroke="#4A7C59" stroke-width="1.5"/>
   <line x1="20" y1="28" x2="20" y2="46" stroke="#4A7C59" stroke-width="1.5"/>

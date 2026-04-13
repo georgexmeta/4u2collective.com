@@ -93,8 +93,8 @@ body::before {
 }
 
 @keyframes textFlicker {
-  0%, 100% { text-shadow: var(--glow-green); }
-  50% { text-shadow: var(--glow-green), 0 0 10px rgba(0,255,65,0.15); }
+  0%, 100% { text-shadow: 0 0 3px rgba(0,255,65,0.3), 0 0 6px rgba(0,255,65,0.1); }
+  50% { text-shadow: 0 0 3px rgba(0,255,65,0.3), 0 0 6px rgba(0,255,65,0.1); }
 }
 
 @keyframes marquee {
@@ -103,8 +103,8 @@ body::before {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: var(--glow-green); }
-  50% { box-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 80px #00ff41, 0 0 120px #00ff41; }
+  0%, 100% { box-shadow: 0 0 5px rgba(0,255,65,0.2), 0 0 10px rgba(0,255,65,0.1); }
+  50% { box-shadow: 0 0 5px rgba(0,255,65,0.3), 0 0 10px rgba(0,255,65,0.15); }
 }
 
 @keyframes scanmove {

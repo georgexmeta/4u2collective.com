@@ -771,6 +771,18 @@ section {
   text-shadow: var(--glow-green);
 }
 
+.coming-soon {
+  border: 2px dashed var(--border);
+  padding: 3rem 1.5rem;
+}
+
+.coming-soon:hover {
+  border-color: rgba(78,204,163,0.3);
+  background: rgba(78,204,163,0.02);
+}
+
+.coming-soon:hover::before { display: none; }
+
 /* ─── ABOUT ─── */
 .about { max-width: 1000px; margin: 0 auto; }
 
@@ -1174,43 +1186,16 @@ footer {
 
 <section id="events" class="events">
   <div class="reveal">
-    <p class="section-label">// UPCOMING.DAT</p>
+    <p class="section-label">// EVENTS.DAT</p>
     <h2 class="section-title">NEXT <span>LEVEL</span></h2>
   </div>
   <div class="events-list reveal">
-    <a href="#" class="event-row">
-      <div class="event-date">
-        <div class="month">MAY</div>
-        <div class="day">17</div>
+    <div class="event-row coming-soon">
+      <div class="event-info" style="grid-column: 1 / -1; text-align: center; padding: 3rem 0;">
+        <h4 style="color: var(--cyan); font-family: 'Press Start 2P', monospace; font-size: 0.8rem; text-shadow: var(--glow-cyan);">► COMING SOON ◄</h4>
+        <p style="color: var(--muted); margin-top: 1rem;">Events & experiences are in development. Stay connected.</p>
       </div>
-      <div class="event-info">
-        <h4>4U2 POP-UP: VOL. 1</h4>
-        <p>Location TBA — Art, music, and limited apparel drop</p>
-      </div>
-      <div class="event-badge">RSVP</div>
-    </a>
-    <a href="#" class="event-row">
-      <div class="event-date">
-        <div class="month">JUN</div>
-        <div class="day">08</div>
-      </div>
-      <div class="event-info">
-        <h4>AI x ART SHOWCASE</h4>
-        <p>Prompt engineering meets physical gallery — Interactive exhibit</p>
-      </div>
-      <div class="event-badge">SOON</div>
-    </a>
-    <a href="#" class="event-row">
-      <div class="event-date">
-        <div class="month">JUL</div>
-        <div class="day">26</div>
-      </div>
-      <div class="event-info">
-        <h4>SUMMER FREQUENCY</h4>
-        <p>Outdoor music & culture festival — Full-day programming</p>
-      </div>
-      <div class="event-badge">COMING</div>
-    </a>
+    </div>
   </div>
 </section>
 

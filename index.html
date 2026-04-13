@@ -1,403 +1,1064 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4U2C | Multimedia For Artists</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #00FF88;
-      --secondary: #00D4FF;
-      --dark: #0A0A0A;
-      --darker: #050505;
-      --light: #F5F5F5;
-      --gray: #888;
-    }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: var(--light);
-      line-height: 1.6;
-    }
-    
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      letter-spacing: 4px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-    }
-    
-    .nav-links a {
-      color: var(--light);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .nav-links a:hover { color: var(--primary); }
-    
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 120px 20px 80px;
-      background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,45,106,0.15) 0%, transparent 70%);
-      top: -200px;
-      right: -200px;
-    }
-    
-    .hero::after {
-      content: '';
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%);
-      bottom: -150px;
-      left: -150px;
-    }
-    
-    .hero-tag {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: var(--secondary);
-      margin-bottom: 20px;
-    }
-    
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 6rem;
-      line-height: 0.9;
-      letter-spacing: 8px;
-      margin-bottom: 20px;
-    }
-    
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--gray);
-      max-width: 500px;
-      margin-bottom: 40px;
-    }
-    
-    .cta-btn {
-      padding: 18px 50px;
-      background: linear-gradient(135deg, var(--primary), #00FF88);
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-radius: 50px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .cta-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(255,45,106,0.3);
-    }
-    
-    /* SERVICES */
-    .services {
-      padding: 120px 40px;
-      background: var(--darker);
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-    
-    .section-title h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4rem;
-      letter-spacing: 4px;
-      margin-bottom: 15px;
-    }
-    
-    .section-title p {
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
-    
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .service-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 40px 30px;
-      text-align: center;
-      transition: all 0.4s;
-      border-radius: 20px;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--primary);
-      background: rgba(255,45,106,0.05);
-    }
-    
-    .service-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    
-    .service-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-    
-    .service-card p {
-      color: var(--gray);
-      font-size: 0.95rem;
-    }
-    
-    /* ABOUT */
-    .about {
-      padding: 120px 40px;
-      background: var(--dark);
-    }
-    
-    .about-content {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
-    .about-content p {
-      font-size: 1.3rem;
-      color: var(--gray);
-      line-height: 1.8;
-      margin-bottom: 30px;
-    }
-    
-    .about-highlight {
-      font-size: 2rem;
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: 2px;
-    }
-    
-    .about-highlight span {
-      color: var(--primary);
-    }
-    
-    /* CONTACT */
-    .contact {
-      padding: 120px 40px;
-      background: var(--darker);
-    }
-    
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .contact-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-    }
-    
-    .contact-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    
-    .contact-card p {
-      font-size: 1.1rem;
-    }
-    
-    .contact-card a {
-      color: var(--secondary);
-      text-decoration: none;
-    }
-    
-    .contact-card a:hover {
-      color: var(--primary);
-    }
-    
-    /* FOOTER */
-    footer {
-      padding: 60px 40px;
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      text-align: center;
-    }
-    
-    footer p {
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-    
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 3.5rem; }
-      .nav-links { display: none; }
-      nav { padding: 15px 20px; }
-      .services, .about, .contact { padding: 80px 20px; }
-      .section-title h2 { font-size: 2.5rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4U2 COLLECTIVE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+ --bg: #0a0a0a;
+ --fg: #f0ece4;
+ --accent: #e8ff00;
+ --accent2: #ff3d00;
+ --muted: #666;
+ --card-bg: #141414;
+ --border: #222;
+ --font-display: 'Bebas Neue', sans-serif;
+ --font-body: 'Outfit', sans-serif;
+ --font-editorial: 'Playfair Display', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+scroll-behavior: smooth;
+scrollbar-width: thin;
+scrollbar-color: var(--accent) var(--bg);
+}
+
+body {
+background: var(--bg);
+color: var(--fg);
+font-family: var(--font-body);
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+}
+
+::selection {
+background: var(--accent);
+color: var(--bg);
+}
+
+/* ─── NAV ─── */
+nav {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 100;
+padding: 1.25rem 2.5rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+backdrop-filter: blur(20px);
+background: rgba(10,10,10,0.7);
+border-bottom: 1px solid var(--border);
+transition: transform 0.4s ease;
+}
+
+.logo {
+font-family: var(--font-display);
+font-size: 1.8rem;
+letter-spacing: 0.15em;
+color: var(--fg);
+text-decoration: none;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+display: flex;
+gap: 2rem;
+list-style: none;
+}
+
+.nav-links a {
+color: var(--muted);
+text-decoration: none;
+font-size: 0.85rem;
+font-weight: 500;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+transition: color 0.3s;
+position: relative;
+}
+
+.nav-links a::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 1px;
+background: var(--accent);
+transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--fg); }
+.nav-links a:hover::after { width: 100%; }
+
+.menu-toggle {
+display: none;
+background: none;
+border: none;
+color: var(--fg);
+font-size: 1.5rem;
+cursor: pointer;
+}
+
+/* ─── HERO ─── */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+position: relative;
+overflow: hidden;
+padding: 2rem;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse at 20% 50%, rgba(232,255,0,0.06) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 30%, rgba(255,61,0,0.04) 0%, transparent 50%);
+pointer-events: none;
+}
+
+.hero-grain {
+position: absolute;
+inset: 0;
+opacity: 0.035;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+background-size: 128px;
+pointer-events: none;
+}
+
+.hero-tag {
+font-size: 0.75rem;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--accent);
+margin-bottom: 1.5rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero h1 {
+font-family: var(--font-display);
+font-size: clamp(4rem, 14vw, 12rem);
+line-height: 0.9;
+letter-spacing: 0.04em;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero h1 .line2 {
+display: block;
+color: var(--accent);
+font-size: 0.55em;
+letter-spacing: 0.2em;
+}
+
+.hero-sub {
+font-size: 1rem;
+color: var(--muted);
+max-width: 500px;
+margin-top: 1.5rem;
+line-height: 1.7;
+font-weight: 300;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-cta {
+display: inline-flex;
+gap: 1rem;
+margin-top: 2.5rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+.btn {
+padding: 0.85rem 2.2rem;
+font-family: var(--font-body);
+font-size: 0.8rem;
+font-weight: 600;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+text-decoration: none;
+border: none;
+cursor: pointer;
+transition: all 0.35s ease;
+}
+
+.btn-primary {
+background: var(--accent);
+color: var(--bg);
+}
+
+.btn-primary:hover {
+background: #fff;
+transform: translateY(-2px);
+box-shadow: 0 8px 30px rgba(232,255,0,0.2);
+}
+
+.btn-outline {
+background: transparent;
+color: var(--fg);
+border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+border-color: var(--fg);
+transform: translateY(-2px);
+}
+
+.scroll-indicator {
+position: absolute;
+bottom: 2.5rem;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+opacity: 0;
+animation: fadeUp 0.8s ease 1.2s forwards;
+}
+
+.scroll-indicator span {
+font-size: 0.65rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--muted);
+}
+
+.scroll-line {
+width: 1px;
+height: 40px;
+background: linear-gradient(to bottom, var(--accent), transparent);
+animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ─── MARQUEE ─── */
+.marquee {
+padding: 1.2rem 0;
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+overflow: hidden;
+white-space: nowrap;
+}
+
+.marquee-inner {
+display: inline-flex;
+animation: marquee 25s linear infinite;
+}
+
+.marquee-item {
+font-family: var(--font-display);
+font-size: 1.1rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--muted);
+padding: 0 2rem;
+}
+
+.marquee-item .dot {
+color: var(--accent);
+margin-right: 2rem;
+}
+
+/* ─── SECTIONS ─── */
+section {
+padding: 6rem 2.5rem;
+}
+
+.section-label {
+font-size: 0.7rem;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--accent);
+margin-bottom: 0.75rem;
+}
+
+.section-title {
+font-family: var(--font-display);
+font-size: clamp(2.5rem, 5vw, 4.5rem);
+letter-spacing: 0.05em;
+line-height: 1;
+margin-bottom: 1.5rem;
+}
+
+.section-desc {
+color: var(--muted);
+font-weight: 300;
+line-height: 1.8;
+max-width: 560px;
+font-size: 0.95rem;
+}
+
+/* ─── DISCIPLINES ─── */
+.disciplines {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.disciplines-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1px;
+background: var(--border);
+margin-top: 3rem;
+}
+
+.discipline-card {
+background: var(--bg);
+padding: 2.5rem 2rem;
+position: relative;
+overflow: hidden;
+transition: all 0.4s ease;
+cursor: default;
+}
+
+.discipline-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 2px;
+background: var(--accent);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.4s ease;
+}
+
+.discipline-card:hover::before { transform: scaleX(1); }
+.discipline-card:hover { background: var(--card-bg); }
+
+.discipline-icon {
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+
+.discipline-card h3 {
+font-family: var(--font-display);
+font-size: 1.4rem;
+letter-spacing: 0.1em;
+margin-bottom: 0.5rem;
+}
+
+.discipline-card p {
+font-size: 0.8rem;
+color: var(--muted);
+line-height: 1.6;
+font-weight: 300;
+}
+
+/* ─── PORTFOLIO / GALLERY ─── */
+.gallery {
+max-width: 1400px;
+margin: 0 auto;
+}
+
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+margin-top: 3rem;
+}
+
+.gallery-item {
+position: relative;
+aspect-ratio: 1;
+overflow: hidden;
+background: var(--card-bg);
+cursor: pointer;
+}
+
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.6s ease, filter 0.4s ease;
+filter: grayscale(30%) brightness(0.85);
+}
+
+.gallery-item:hover img {
+transform: scale(1.08);
+filter: grayscale(0%) brightness(1);
+}
+
+.gallery-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 1.5rem;
+opacity: 0;
+transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+.gallery-overlay h4 {
+font-family: var(--font-display);
+font-size: 1.2rem;
+letter-spacing: 0.1em;
+}
+
+.gallery-overlay span {
+font-size: 0.7rem;
+color: var(--accent);
+letter-spacing: 0.2em;
+text-transform: uppercase;
+margin-top: 0.25rem;
+}
+
+.gallery-item.featured {
+grid-column: span 2;
+grid-row: span 2;
+}
+
+/* placeholder shimmer for gallery */
+.gallery-placeholder {
+background: linear-gradient(135deg, var(--card-bg) 0%, #1a1a1a 50%, var(--card-bg) 100%);
+background-size: 200% 200%;
+animation: shimmer 3s ease-in-out infinite;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(--font-display);
+font-size: 1.5rem;
+letter-spacing: 0.15em;
+color: #333;
+}
+
+/* ─── EVENTS ─── */
+.events {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.events-list {
+margin-top: 3rem;
+display: flex;
+flex-direction: column;
+}
+
+.event-row {
+display: grid;
+grid-template-columns: 100px 1fr auto;
+align-items: center;
+gap: 2rem;
+padding: 1.8rem 0;
+border-bottom: 1px solid var(--border);
+transition: all 0.3s ease;
+cursor: pointer;
+text-decoration: none;
+color: var(--fg);
+}
+
+.event-row:hover {
+padding-left: 1rem;
+border-color: var(--accent);
+}
+
+.event-date {
+text-align: center;
+}
+
+.event-date .month {
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--accent);
+}
+
+.event-date .day {
+font-family: var(--font-display);
+font-size: 2.5rem;
+line-height: 1;
+}
+
+.event-info h4 {
+font-family: var(--font-display);
+font-size: 1.3rem;
+letter-spacing: 0.08em;
+}
+
+.event-info p {
+font-size: 0.8rem;
+color: var(--muted);
+margin-top: 0.25rem;
+}
+
+.event-badge {
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 0.4rem 1rem;
+border: 1px solid var(--border);
+color: var(--muted);
+white-space: nowrap;
+transition: all 0.3s;
+}
+
+.event-row:hover .event-badge {
+border-color: var(--accent);
+color: var(--accent);
+}
+
+/* ─── ABOUT ─── */
+.about {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.about-content {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+margin-top: 3rem;
+align-items: start;
+}
+
+.about-text {
+font-size: 0.95rem;
+color: var(--muted);
+line-height: 1.9;
+font-weight: 300;
+}
+
+.about-text em {
+font-family: var(--font-editorial);
+color: var(--fg);
+font-style: italic;
+font-size: 1.05em;
+}
+
+.about-stats {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+}
+
+.stat {
+padding: 1.5rem;
+border-left: 1px solid var(--border);
+}
+
+.stat-num {
+font-family: var(--font-display);
+font-size: 2.8rem;
+color: var(--accent);
+line-height: 1;
+}
+
+.stat-label {
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(--muted);
+margin-top: 0.4rem;
+}
+
+/* ─── CONTACT / CTA ─── */
+.contact {
+max-width: 700px;
+margin: 0 auto;
+text-align: center;
+}
+
+.contact-form {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+margin-top: 2.5rem;
+text-align: left;
+}
+
+.input-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+background: var(--card-bg);
+border: 1px solid var(--border);
+padding: 1rem 1.2rem;
+color: var(--fg);
+font-family: var(--font-body);
+font-size: 0.85rem;
+font-weight: 300;
+transition: border-color 0.3s;
+outline: none;
+resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+border-color: var(--accent);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+color: #444;
+}
+
+.contact-form textarea { min-height: 120px; }
+
+.form-footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 0.5rem;
+}
+
+.email-opt {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 0.75rem;
+color: var(--muted);
+cursor: pointer;
+}
+
+.email-opt input[type="checkbox"] {
+accent-color: var(--accent);
+}
+
+/* ─── FOOTER ─── */
+footer {
+padding: 3rem 2.5rem 2rem;
+border-top: 1px solid var(--border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.footer-brand {
+font-family: var(--font-display);
+font-size: 1.2rem;
+letter-spacing: 0.15em;
+}
+
+.footer-brand span { color: var(--accent); }
+
+.footer-links {
+display: flex;
+gap: 1.5rem;
+}
+
+.footer-links a {
+color: var(--muted);
+text-decoration: none;
+font-size: 0.75rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+.footer-copy {
+width: 100%;
+text-align: center;
+font-size: 0.7rem;
+color: #333;
+margin-top: 1.5rem;
+letter-spacing: 0.1em;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+50% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes marquee {
+from { transform: translateX(0); }
+to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+0%, 100% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+}
+
+/* reveal on scroll */
+.reveal {
+opacity: 0;
+transform: translateY(40px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+nav { padding: 1rem 1.5rem; }
+
+.nav-links {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: var(--bg);
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 2rem;
+z-index: 99;
+}
+
+.nav-links.open { display: flex; }
+
+.nav-links a { font-size: 1.2rem; }
+
+.menu-toggle { display: block; z-index: 101; }
+
+section { padding: 4rem 1.5rem; }
+
+.gallery-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+.gallery-item.featured {
+grid-column: span 2;
+grid-row: span 1;
+aspect-ratio: 2/1;
+}
+
+.about-content {
+grid-template-columns: 1fr;
+gap: 2.5rem;
+}
+
+.event-row {
+grid-template-columns: 80px 1fr;
+gap: 1rem;
+}
+
+.event-badge { display: none; }
+
+.input-row { grid-template-columns: 1fr; }
+
+.form-footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+}
+</style>
+
 </head>
 <body>
 
-  <nav>
-    <div class="logo">4U2C</div>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
 
-  <section class="hero">
-    <p class="hero-tag">San Francisco</p>
-    <h1>CREATE<br><span>YOUR VISION</span></h1>
-    <p>Full-service multimedia studio for artists. Video, music, design, photography & social media — all under one roof.</p>
-    <a href="#contact" class="cta-btn">Get In Touch</a>
-  </section>
+<nav>
+ <a href="#" class="logo">4U2<span>.</span></a>
+ <ul class="nav-links" id="navLinks">
+ <li><a href="#disciplines">Disciplines</a></li>
+ <li><a href="#gallery">Gallery</a></li>
+ <li><a href="#events">Events</a></li>
+ <li><a href="#about">About</a></li>
+ <li><a href="#contact">Contact</a></li>
+ </ul>
+ <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+</nav>
 
-  <section class="services" id="services">
-    <div class="section-title">
-      <h2>OUR SERVICES</h2>
-      <p>Everything you need to bring your creative vision to life</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🎬</div>
-        <h3>Video Production</h3>
-        <p>Music videos, promotional content, documentaries, and more. From concept to final cut.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎵</div>
-        <h3>Music Production</h3>
-        <p>Recording, mixing, mastering, and beat production. Professional sound for your sound.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎨</div>
-        <h3>Graphic Design</h3>
-        <p>Album art, logos, merchandise, social media graphics. Visual identity that stands out.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📸</div>
-        <h3>Photography</h3>
-        <p>Portraits, editorial, event coverage, and lifestyle shoots. Capture your moment.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📱</div>
-        <h3>Social Media</h3>
-        <p>Content strategy, posting, analytics, and growth. Build your audience organically.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <h3>Web & Brand</h3>
-        <p>Website design, branding, and digital presence. Your brand, online.</p>
-      </div>
-    </div>
-  </section>
+<!-- HERO -->
 
-  <section class="about" id="about">
-    <div class="section-title">
-      <h2>WHO WE ARE</h2>
-    </div>
-    <div class="about-content">
-      <p>4U2C is a community based, multidisciplinary talent agency in based San Francisco California. A collective of producers, photographers, programmers, choreographers & artists whose disciplines vary through mediums.</p>
-      <p>Whether you need content for your social media or assistance in web design, we are here to work together.</p>
-      <p class="about-highlight">Your vision. <span>Our mission.</span></p>
-    </div>
-  </section>
+<section class="hero" id="hero">
+ <div class="hero-grain"></div>
+ <p class="hero-tag">Music &bull; Fashion &bull; Art &bull; AI &bull; Events</p>
+ <h1>
+ 4U2
+ <span class="line2">COLLECTIVE</span>
+ </h1>
+ <p class="hero-sub">A multi-disciplinary creative collective building at the intersection of culture, technology, and community.</p>
+ <div class="hero-cta">
+ <a href="#gallery" class="btn btn-primary">View Work</a>
+ <a href="#contact" class="btn btn-outline">Get In Touch</a>
+ </div>
+ <div class="scroll-indicator">
+ <span>Scroll</span>
+ <div class="scroll-line"></div>
+ </div>
+</section>
 
-  <section class="contact" id="contact">
-    <div class="section-title">
-      <h2>GET IN TOUCH</h2>
-      <p>Ready to create something amazing?</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h3>Phone</h3>
-        <p><a href="tel:+14153240599">(415) 324-0599</a></p>
-      </div>
-      <div class="contact-card">
-        <h3>Email</h3>
-        <p><a href="mailto:Gtinoco82690@gmail.com">Gtinoco82690@gmail.com</a></p>
-      </div>
-      <div class="contact-card">
-        <h3>Location</h3>
-        <p>San Francisco, CA</p>
-      </div>
-    </div>
-  </section>
+<!-- MARQUEE -->
 
-  <footer>
-    <p>&copy; 2026 4U2C Multimedia. All rights reserved.</p>
-  </footer>
+<div class="marquee">
+ <div class="marquee-inner">
+ <span class="marquee-item"><span class="dot">&#9679;</span>MUSIC</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>FASHION</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>APPAREL</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>ART</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>PROMPT ENGINEERING</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>IRL EVENTS</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>COMMUNITY</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>MUSIC</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>FASHION</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>APPAREL</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>ART</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>PROMPT ENGINEERING</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>IRL EVENTS</span>
+ <span class="marquee-item"><span class="dot">&#9679;</span>COMMUNITY</span>
+ </div>
+</div>
+
+<!-- DISCIPLINES -->
+
+<section id="disciplines" class="disciplines">
+ <div class="reveal">
+ <p class="section-label">What We Do</p>
+ <h2 class="section-title">DISCIPLINES</h2>
+ <p class="section-desc">We don't fit in one lane. 4U2 operates across culture — from studio sessions to gallery walls to the command line.</p>
+ </div>
+ <div class="disciplines-grid reveal">
+ <div class="discipline-card">
+ <div class="discipline-icon">&#9835;</div>
+ <h3>MUSIC</h3>
+ <p>Production, curation, and live performance. We craft soundscapes that move bodies and minds.</p>
+ </div>
+ <div class="discipline-card">
+ <div class="discipline-icon">&#9874;</div>
+ <h3>FASHION</h3>
+ <p>Streetwear meets conceptual design. Limited drops, custom pieces, and wearable art.</p>
+ </div>
+ <div class="discipline-card">
+ <div class="discipline-icon">&#9998;</div>
+ <h3>ART</h3>
+ <p>Digital and physical works that challenge perspective. From gallery installations to AI-generated pieces.</p>
+ </div>
+ <div class="discipline-card">
+ <div class="discipline-icon">&#10095;</div>
+ <h3>PROMPT ENG</h3>
+ <p>Pushing the boundaries of AI-assisted creativity. Custom tools, workflows, and generative art.</p>
+ </div>
+ <div class="discipline-card">
+ <div class="discipline-icon">&#9733;</div>
+ <h3>EVENTS</h3>
+ <p>IRL experiences that bring the community together. Pop-ups, showcases, and cultural programming.</p>
+ </div>
+ </div>
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery" class="gallery">
+ <div class="reveal">
+ <p class="section-label">Portfolio</p>
+ <h2 class="section-title">SELECTED WORKS</h2>
+ <p class="section-desc">A curated look at recent projects across our disciplines.</p>
+ </div>
+ <div class="gallery-grid reveal">
+ <div class="gallery-item featured">
+ <div class="gallery-placeholder">FEATURED PROJECT</div>
+ <div class="gallery-overlay">
+ <h4>UNTITLED 001</h4>
+ <span>Mixed Media</span>
+ </div>
+ </div>
+ <div class="gallery-item">
+ <div class="gallery-placeholder">002</div>
+ <div class="gallery-overlay">
+ <h4>CAPSULE DROP</h4>
+ <span>Fashion</span>
+ </div>
+ </div>
+ <div class="gallery-item">
+ <div class="gallery-placeholder">003</div>
+ <div class="gallery-overlay">
+ <h4>FREQUENCY</h4>
+ <span>Music</span>
+ </div>
+ </div>
+ <div class="gallery-item">
+ <div class="gallery-placeholder">004</div>
+ <div class="gallery-overlay">
+ <h4>NEURAL BLOOM</h4>
+ <span>AI Art</span>
+ </div>
+ </div>
+ <div class="gallery-item">
+ <div class="gallery-placeholder">005</div>
+ <div class="gallery-overlay">
+ <h4>NIGHT MARKET</h4>
+ <span>Event</span>
+ </div>
+ </div>
+ <div class="gallery-item">
+ <div class="gallery-placeholder">006</div>
+ <div class="gallery-overlay">
+ <h4>WAVEFORM</h4>
+ <span>Visual</span>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- EVENTS -->
+
+<section id="events" class="events">
+ <div class="reveal">
+ <p class="section-label">What's Next</p>
+ <h2 class="section-title">UPCOMING EVENTS</h2>
+ </div>
+ <div class="events-list reveal">
+ <a href="#" class="event-row">
+ <div class="event-date">
+ <div class="month">MAY</div>
+ <div class="day">17</div>
+ </div>
+ <div class="event-info">
+ <h4>4U2 POP-UP: VOL. 1</h4>
+ <p>Location TBA &mdash; Art, music, and limited apparel drop</p>
+ </div>
+ <div class="event-badge">RSVP</div>
+ </a>
+ <a href="#" class="event-row">
+ <div class="event-date">
+ <div class="month">JUN</div>
+ <div class="day">08</div>
+ </div>
+ <div class="event-info">
+ <h4>AI x ART SHOWCASE</h4>
+ <p>Prompt engineering meets physical gallery &mdash; Interactive exhibit</p>
+ </div>
+ <div class="event-badge">SOON</div>
+ </a>
+ <a href="#" class="event-row">
+ <div class="event-date">
+ <div class="month">JUL</div>
+ <div class="day">26</div>
+ </div>
+ <div class="event-info">
+ <h4>SUMMER FREQUENCY</h4>
+ <p>Outdoor music & culture festival &mdash; Full-day programming</p>
+ </div>
+ <div class="event-badge">COMING</div>
+ </a>
+ </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+ <div class="reveal">
+ <p class="section-label">Who We Are</p>
+ <h2 class="section-title">ABOUT 4U2</h2>
+ </div>
+ <div class="about-content reveal">
+ <div class="about-text"><p>4U2 Collective is a creative movement born from the belief that <em>the best ideas live at the crossroads</em>. We bring together musicians, designers, visual artists, technologists, and community builders under one roof.</p>
+ <br>
+ <p>We're not just making things — we're building a culture. From limited apparel drops to AI-generated art installations, from underground shows to prompt engineering workshops, everything we do is <em>for you, too</em>.</p>
+ </div>
+ <div class="about-stats">
+ <div class="stat">
+ <div class="stat-num">5+</div>
+ <div class="stat-label">Disciplines</div>
+ </div>
+ <div class="stat">
+ <div class="stat-num">IRL</div>
+ <div class="stat-label">Events</div>
+ </div>
+ <div class="stat">
+ <div class="stat-num">AI</div>
+ <div class="stat-label">Powered</div>
+ </div>
+ <div class="stat">
+ <div class="stat-num">4U2</div>
+ <div class="stat-label">Community</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact">
+ <div class="reveal">
+ <p class="section-label">Connect</p>
+ <h2 class="section-title">GET IN TOUCH</h2>
+ <p class="section-desc" style="margin: 0 auto;">Interested in collaborating, attending an event, or joining the collective? Drop us a line.</p>
+ <div class="contact-form">
+ <div class="input-row">
+ <input type="text" placeholder="Name" required>
+ <input type="email" placeholder="Email" required>
+ </div>
+ <input type="text" placeholder="Subject">
+ <textarea placeholder="Your message..."></textarea>
+ <div class="form-footer">
+ <label class="email-opt">
+ <input type="checkbox"> Sign up for updates, drops, and event invites
+ </label>
+ <button class="btn btn-primary" type="button">Send Message</button>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+ <div class="footer-brand">4U2<span>.</span></div>
+ <div class="footer-links">
+ <a href="#">Instagram</a>
+ <a href="#">Twitter</a>
+ <a href="#">SoundCloud</a>
+ <a href="#">TikTok</a>
+ </div>
+ <p class="footer-copy">&copy; 2026 4U2 COLLECTIVE — ALL RIGHTS RESERVED</p>
+</footer>
+
+<script>
+// Mobile menu
+const toggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+ navLinks.classList.toggle('open');
+ toggle.innerHTML = navLinks.classList.contains('open') ? '&#10005;' : '&#9776;';
+});
+navLinks.querySelectorAll('a').forEach(a => {
+ a.addEventListener('click', () => {
+ navLinks.classList.remove('open');
+ toggle.innerHTML = '&#9776;';
+ });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ entry.target.classList.add('visible');
+ }
+ });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>

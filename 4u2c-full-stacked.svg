@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" fill="#080810"/>
+  <!-- Grid background -->
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#4ecca3" stroke-width="0.3" opacity="0.15"/>
+    </pattern>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="300" height="200" fill="url(#grid)"/>
+  <!-- Corner accents -->
+  <path d="M 10 30 L 10 10 L 30 10" fill="none" stroke="#4ecca3" stroke-width="2" opacity="0.5"/>
+  <path d="M 270 10 L 290 10 L 290 30" fill="none" stroke="#4ecca3" stroke-width="2" opacity="0.5"/>
+  <path d="M 290 170 L 290 190 L 270 190" fill="none" stroke="#4ecca3" stroke-width="2" opacity="0.5"/>
+  <path d="M 30 190 L 10 190 L 10 170" fill="none" stroke="#4ecca3" stroke-width="2" opacity="0.5"/>
+  <!-- 4U2 large -->
+  <text x="150" y="110" font-family="'Press Start 2P', monospace" font-size="80" fill="#4ecca3" text-anchor="middle" filter="url(#glow)">4U2</text>
+  <!-- Dot -->
+  <circle cx="150" cy="130" r="5" fill="#e87ca0"/>
+  <!-- COLLECTIVE -->
+  <text x="150" y="165" font-family="'Press Start 2P', monospace" font-size="14" fill="#7fc8e8" text-anchor="middle" letter-spacing="6">COLLECTIVE</text>
+  <!-- Bottom accent line -->
+  <rect x="30" y="185" width="240" height="1" fill="#4ecca3" opacity="0.3"/>
+</svg>

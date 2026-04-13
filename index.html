@@ -131,13 +131,14 @@ nav {
 }
 
 .logo {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1rem;
-  color: var(--green);
-  text-shadow: var(--glow-green);
   text-decoration: none;
-  letter-spacing: 0.15em;
-  animation: textFlicker 3s infinite;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
 }
 
 .logo span { color: var(--cyan); text-shadow: var(--glow-cyan); }
@@ -250,9 +251,17 @@ nav {
 .hero-title-wrap {
   position: relative;
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero h1 {
+.hero-logo-img {
+  max-width: min(450px, 85vw);
+  height: auto;
+}
+
+.hero h1 { display: none; }
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(3rem, 12vw, 10rem);
   line-height: 1;
@@ -1024,7 +1033,9 @@ footer {
 <body>
 
 <nav>
-  <a href="#" class="logo">4U2<span>.</span></a>
+  <a href="#" class="logo">
+    <img src="4u2c-wordmark.svg" alt="4U2 COLLECTIVE" height="28" style="vertical-align: middle;">
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#disciplines">Disciplines</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -1039,10 +1050,7 @@ footer {
   <p class="hero-tag">▶ MUSIC · FASHION · ART · AI · EVENTS ◀</p>
 
   <div class="hero-title-wrap">
-    <h1>
-      4U2
-      <span class="line2">COLLECTIVE</span>
-    </h1>
+    <img src="4u2c-full-stacked.svg" alt="4U2 COLLECTIVE" class="hero-logo-img">
   </div>
 
   <p class="hero-sub">
@@ -1235,7 +1243,7 @@ footer {
 </section>
 
 <footer>
-  <div class="footer-brand">4U2<span>.</span></div>
+  <div class="footer-brand"><img src="4u2c-logo-mark.svg" alt="4U2" height="28" style="vertical-align: middle;"></div>
   <div class="footer-links">
     <a href="#">INSTAGRAM</a>
     <a href="#">TWITTER</a>

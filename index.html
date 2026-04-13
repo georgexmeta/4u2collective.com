@@ -554,6 +554,26 @@ section {
   letter-spacing: 0.03em;
 }
 
+.fashion-card {
+  background: linear-gradient(135deg, var(--card) 0%, rgba(232,200,78,0.03) 100%);
+  border-color: rgba(232,200,78,0.3);
+}
+
+.fashion-card:hover {
+  border-color: var(--yellow);
+  box-shadow: inset 0 0 30px rgba(232,200,78,0.08), 0 0 20px rgba(232,200,78,0.2);
+}
+
+.fashion-card .discipline-icon {
+  filter: drop-shadow(0 0 8px rgba(232,200,78,0.6));
+}
+
+.fashion-card h3 {
+  color: var(--yellow);
+  text-shadow: 0 0 8px rgba(232,200,78,0.4);
+  border-bottom-color: var(--yellow);
+}
+
 /* ─── GALLERY ─── */
 .gallery { max-width: 1400px; margin: 0 auto; }
 
@@ -1077,10 +1097,10 @@ footer {
       <h3>MUSIC</h3>
       <p>Production, curation, and live performance. We craft soundscapes that move bodies and minds.</p>
     </div>
-    <div class="discipline-card">
+    <div class="discipline-card fashion-card">
       <span class="discipline-icon">◈</span>
       <h3>FASHION</h3>
-      <p>Streetwear meets conceptual design. Limited drops, custom pieces, and wearable art.</p>
+      <p>Photography, model direction & editorial styling. Conceptual shoots, lookbooks, and brand narratives.</p>
     </div>
     <div class="discipline-card">
       <span class="discipline-icon">✦</span>

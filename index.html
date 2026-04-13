@@ -3,41 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4U2 COLLECTIVE</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<title>4U2 COLLECTIVE — Creative Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════
-   4U2 COLLECTIVE — EDITORIAL LUXURY
+   4U2 COLLECTIVE — EDITORIAL AGENCY
    ══════════════════════════════════════════ */
 
 :root {
-  --bg: #FAF9F7;
-  --bg-alt: #F0EDE8;
-  --text: #1A1A1A;
-  --text-muted: #6B6B6B;
-  --accent: #8B7355;
-  --line: #E0DCD4;
+  --bg: #F7F9F8;
+  --bg-alt: #EEF2F0;
+  --text: #1A2E23;
+  --text-muted: #5A6B62;
+  --green: #4A7C59;
+  --green-light: #6B9E78;
+  --blue: #4A6B7C;
+  --blue-light: #7A9EAA;
+  --accent: #2D4A3A;
+  --line: #D4DED8;
   --white: #FFFFFF;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
+html { scroll-behavior: smooth; font-size: 16px; }
 
 /* SCROLLBAR */
-html { scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+html { scrollbar-width: thin; scrollbar-color: var(--green) var(--bg); }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); }
+::-webkit-scrollbar-thumb { background: var(--green); }
 
 /* BODY */
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   line-height: 1.7;
   overflow-x: hidden;
@@ -51,56 +52,56 @@ nav {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 2rem 4rem;
+  padding: 1.5rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(250,249,247,0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(247,249,248,0.95);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 
 .logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   color: var(--text);
   text-decoration: none;
   text-transform: uppercase;
 }
 
-.logo span { font-style: italic; color: var(--accent); }
+.logo span { color: var(--green); }
 
 .nav-links {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   list-style: none;
 }
 
 .nav-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.25s;
 }
 
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--green); }
 
 .menu-toggle {
   display: none;
   background: none;
   border: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   padding: 0.5rem;
+  color: var(--text);
 }
 
 /* ─── HERO ─── */
@@ -111,78 +112,83 @@ nav {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 8rem 2rem 4rem;
+  padding: 8rem 2rem 5rem;
   background: var(--bg);
   position: relative;
 }
 
-.hero::before {
+.hero::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 80px;
-  background: var(--line);
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--bg-alt));
+  pointer-events: none;
 }
 
 .hero-eyebrow {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
-  letter-spacing: 0.3em;
+  font-weight: 400;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--green);
   margin-bottom: 2rem;
 }
 
 .hero h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4rem, 12vw, 10rem);
+  font-size: clamp(4rem, 11vw, 9rem);
   font-weight: 300;
-  line-height: 0.95;
+  line-height: 1;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 900px;
 }
 
-.hero h1 .italic { font-style: italic; color: var(--accent); }
+.hero h1 em {
+  font-style: italic;
+  color: var(--green);
+}
 
 .hero-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 300;
   font-style: italic;
   color: var(--text-muted);
-  max-width: 500px;
+  max-width: 560px;
   line-height: 1.6;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .hero-cta {
   display: flex;
-  gap: 2rem;
-  margin-top: 4rem;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .btn {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 1rem 2.5rem;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.25s;
   cursor: pointer;
   border: none;
   background: none;
 }
 
 .btn-primary {
-  background: var(--text);
+  background: var(--green);
   color: var(--white);
 }
 
@@ -200,111 +206,153 @@ nav {
   color: var(--white);
 }
 
-/* ─── DIVIDER ─── */
-.divider {
-  width: 60px;
-  height: 1px;
+/* ─── MARQUEE / CREDITS ─── */
+.credits {
   background: var(--accent);
+  padding: 1.2rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.credits-inner {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+
+.credits span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  padding: 0 2.5rem;
+}
+
+.credits span strong {
+  color: var(--green-light);
+  font-weight: 400;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─── MANIFESTO ─── */
+.manifesto {
+  padding: 8rem 2rem;
+  background: var(--bg-alt);
+  text-align: center;
+}
+
+.manifesto-inner {
+  max-width: 700px;
   margin: 0 auto;
 }
 
-/* ─── SECTIONS ─── */
-section {
-  padding: 8rem 2rem;
-  position: relative;
-}
-
-.section-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.section-title {
+.manifesto blockquote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  margin-bottom: 2rem;
-  text-align: center;
+  font-style: italic;
+  line-height: 1.4;
   color: var(--text);
 }
 
-.section-title .italic { font-style: italic; color: var(--accent); }
-
-.section-desc {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
+.manifesto blockquote em {
+  color: var(--green);
   font-style: italic;
+}
+
+.manifesto cite {
+  display: block;
+  margin-top: 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  line-height: 1.7;
+  font-style: normal;
 }
 
-/* ─── DISCIPLINES ─── */
-.disciplines {
-  background: var(--bg-alt);
+/* ─── SERVICES ─── */
+.services {
   padding: 8rem 2rem;
+  background: var(--bg);
 }
 
-.disciplines-inner {
-  max-width: 1100px;
+.services-inner {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.disciplines-header {
+.services-header {
   text-align: center;
   margin-bottom: 5rem;
 }
 
-.disciplines-grid {
+.section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 3rem;
   margin-top: 4rem;
 }
 
-.discipline-card {
-  text-align: center;
-  padding: 2rem 1rem;
+.service-card {
+  padding: 2.5rem 1.5rem;
+  border-top: 2px solid var(--line);
+  transition: border-color 0.25s;
 }
 
-.discipline-icon {
-  font-size: 2rem;
+.service-card:hover {
+  border-top-color: var(--green);
+}
+
+.service-icon {
+  font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: var(--accent);
-  font-style: normal;
+  color: var(--green);
 }
 
-.discipline-card h3 {
+.service-card h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
   margin-bottom: 1rem;
   color: var(--text);
 }
 
-.discipline-card p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-style: italic;
+.service-card p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* ─── GALLERY ─── */
 .gallery {
   padding: 8rem 2rem;
-  background: var(--bg);
+  background: var(--bg-alt);
 }
 
 .gallery-inner {
@@ -320,7 +368,7 @@ section {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-top: 4rem;
 }
 
@@ -328,7 +376,7 @@ section {
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
-  background: var(--bg-alt);
+  background: var(--bg);
 }
 
 .gallery-item.featured {
@@ -340,21 +388,21 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
-  filter: grayscale(20%);
+  transition: transform 0.5s ease;
+  filter: saturate(0.85);
 }
 
 .gallery-item:hover img {
-  transform: scale(1.03);
-  filter: grayscale(0%);
+  transform: scale(1.04);
+  filter: saturate(1);
 }
 
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26,26,26,0.6) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(26,46,35,0.7) 0%, transparent 55%);
   opacity: 0;
-  transition: opacity 0.4s;
+  transition: opacity 0.35s;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -367,16 +415,15 @@ section {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
   color: var(--white);
 }
 
 .gallery-overlay span {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.65rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
+  color: var(--green-light);
   margin-top: 0.3rem;
 }
 
@@ -390,47 +437,71 @@ section {
   font-size: 1rem;
   font-style: italic;
   color: var(--text-muted);
-  letter-spacing: 0.1em;
 }
 
-/* ─── EVENTS ─── */
-.events {
+/* ─── COMMUNITY ─── */
+.community {
   padding: 8rem 2rem;
-  background: var(--bg-alt);
+  background: var(--bg);
 }
 
-.events-inner {
-  max-width: 800px;
+.community-inner {
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
-.coming-soon {
-  padding: 5rem 2rem;
-  border: 1px solid var(--line);
-  margin-top: 4rem;
-}
-
-.coming-soon h4 {
+.community h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 2rem;
 }
 
-.coming-soon p {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
+.community p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.community-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--green);
+  line-height: 1;
+}
+
+.stat-item .label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
+  margin-top: 0.5rem;
 }
 
 /* ─── ABOUT ─── */
 .about {
   padding: 8rem 2rem;
-  background: var(--bg);
+  background: var(--bg-alt);
 }
 
 .about-inner {
@@ -438,61 +509,58 @@ section {
   margin: 0 auto;
 }
 
+.about-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
-  margin-top: 4rem;
   align-items: start;
 }
 
 .about-text p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-style: italic;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
 
 .about-text p strong {
-  font-style: normal;
   color: var(--text);
-  font-weight: 500;
+  font-weight: 400;
 }
 
-.about-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+.about-disciplines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
 }
 
-.stat {
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--line);
-}
-
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
+.about-disciplines span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.about-disciplines span:hover {
+  border-color: var(--green);
+  color: var(--green);
 }
 
 /* ─── CONTACT ─── */
 .contact {
   padding: 8rem 2rem;
-  background: var(--bg-alt);
+  background: var(--accent);
 }
 
 .contact-inner {
@@ -501,10 +569,14 @@ section {
   text-align: center;
 }
 
+.contact .section-label { color: var(--green-light); }
+.contact .section-title { color: var(--white); }
+.contact .section-title em { color: var(--green-light); }
+
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-top: 3rem;
   text-align: left;
 }
@@ -512,64 +584,62 @@ section {
 .input-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .contact-form input,
 .contact-form textarea {
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
   padding: 1.2rem;
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  transition: border-color 0.3s;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.25s, background 0.25s;
   outline: none;
   resize: vertical;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--accent);
+  border-color: var(--green-light);
+  background: rgba(255,255,255,0.12);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: var(--text-muted);
-  font-style: italic;
+  color: rgba(255,255,255,0.4);
 }
 
-.contact-form textarea { min-height: 140px; }
+.contact-form textarea { min-height: 130px; }
 
 .form-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .email-opt {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.5);
   cursor: pointer;
-  letter-spacing: 0.05em;
 }
 
 .email-opt input[type="checkbox"] {
-  accent-color: var(--accent);
+  accent-color: var(--green-light);
   width: 16px;
   height: 16px;
 }
 
 /* ─── FOOTER ─── */
 footer {
-  padding: 4rem 2rem 3rem;
-  background: var(--bg);
-  border-top: 1px solid var(--line);
+  padding: 3rem 2rem 2.5rem;
+  background: var(--text);
 }
 
 .footer-inner {
@@ -579,18 +649,19 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .footer-brand {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem;
-  letter-spacing: 0.15em;
-  color: var(--text);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--white);
   text-transform: uppercase;
 }
 
-.footer-brand .italic { font-style: italic; color: var(--accent); }
+.footer-brand span { color: var(--green-light); }
 
 .footer-links {
   display: flex;
@@ -598,35 +669,35 @@ footer {
 }
 
 .footer-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.4);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.25s;
 }
 
-.footer-links a:hover { color: var(--text); }
+.footer-links a:hover { color: var(--white); }
 
 .footer-copy {
   width: 100%;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.25);
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 /* ─── REVEAL ─── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(25px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .reveal.visible {
@@ -636,10 +707,10 @@ footer {
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-  nav { padding: 1.5rem 2rem; }
-  .nav-links { display: none; }
-  .nav-links.open {
-    display: flex;
+  nav { padding: 1.2rem 1.5rem; }
+
+  .nav-links {
+    display: none;
     position: fixed;
     inset: 0;
     background: var(--bg);
@@ -648,15 +719,18 @@ footer {
     justify-content: center;
     gap: 2rem;
   }
-  .nav-links.open a { font-size: 0.9rem; }
+
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 0.9rem; color: var(--text); }
   .menu-toggle { display: block; }
 
   section { padding: 5rem 1.5rem; }
 
-  .hero h1 { font-size: clamp(3rem, 15vw, 5rem); }
+  .hero h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+
+  .community-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
   .about-content { grid-template-columns: 1fr; gap: 3rem; }
-  .about-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
   .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .gallery-item.featured { grid-column: span 2; grid-row: span 1; aspect-ratio: 2/1; }
@@ -674,9 +748,9 @@ footer {
 <nav>
   <a href="#" class="logo">4U2 <span>.</span></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#disciplines">Disciplines</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#events">Events</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Work</a></li>
+    <li><a href="#community">Community</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -684,48 +758,75 @@ footer {
 </nav>
 
 <section class="hero" id="hero">
-  <p class="hero-eyebrow">Creative Collective — San Francisco</p>
-  <h1>4U2 <span class="italic">Collective</span></h1>
-  <p class="hero-sub">A multi-disciplinary creative collective building at the intersection of culture, technology, and community.</p>
+  <p class="hero-eyebrow">San Francisco — Est. 2024</p>
+  <h1>We build <em>culture.</em><br>Together.</h1>
+  <p class="hero-sub">A multi-disciplinary creative agency at the intersection of music, fashion, art, and community — building things that actually matter.</p>
   <div class="hero-cta">
-    <a href="#gallery" class="btn btn-primary">View Work</a>
-    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    <a href="#contact" class="btn btn-primary">Start a Project</a>
+    <a href="#work" class="btn btn-outline">See Our Work</a>
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="credits">
+  <div class="credits-inner">
+    <span><strong>Music</strong> — Production & Curation</span>
+    <span><strong>Fashion</strong> — Editorial & Brand</span>
+    <span><strong>Art</strong> — Digital & Physical</span>
+    <span><strong>AI</strong> — Creative Technology</span>
+    <span><strong>Events</strong> — Community Experiences</span>
+    <span><strong>Branding</strong> — Identity & Strategy</span>
+    <span><strong>Music</strong> — Production & Curation</span>
+    <span><strong>Fashion</strong> — Editorial & Brand</span>
+    <span><strong>Art</strong> — Digital & Physical</span>
+    <span><strong>AI</strong> — Creative Technology</span>
+    <span><strong>Events</strong> — Community Experiences</span>
+    <span><strong>Branding</strong> — Identity & Strategy</span>
+  </div>
+</div>
 
-<section id="disciplines" class="disciplines">
-  <div class="disciplines-inner">
-    <div class="disciplines-header reveal">
-      <p class="section-label">What We Do</p>
-      <h2 class="section-title">Our <span class="italic">Disciplines</span></h2>
+<section class="manifesto">
+  <div class="manifesto-inner reveal">
+    <blockquote>"Community isn't a strategy. It's the <em>foundation</em> everything else is built on — the music, the art, the brands, the moments. We start there."</blockquote>
+    <cite>— The 4U2 Approach</cite>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">How We Help</h2>
     </div>
-    <div class="disciplines-grid reveal">
-      <div class="discipline-card">
-        <p class="discipline-icon">♪</p>
-        <h3>Music</h3>
-        <p>Production, curation, and live performance. We craft soundscapes that move bodies and minds.</p>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <p class="service-icon">♪</p>
+        <h3>Music & Audio</h3>
+        <p>Production, curation, and sonic branding. We create sounds that define spaces and move people — literally and emotionally.</p>
       </div>
-      <div class="discipline-card">
-        <p class="discipline-icon">◈</p>
-        <h3>Fashion</h3>
-        <p>Photography, model direction & editorial styling. Conceptual shoots, lookbooks, and brand narratives.</p>
+      <div class="service-card">
+        <p class="service-icon">◈</p>
+        <h3>Fashion & Editorial</h3>
+        <p>Photography, model direction, lookbooks, and brand campaigns. We tell stories through imagery that connect and convert.</p>
       </div>
-      <div class="discipline-card">
-        <p class="discipline-icon">✦</p>
-        <h3>Art</h3>
-        <p>Digital and physical works that challenge perspective. From gallery installations to AI-generated pieces.</p>
+      <div class="service-card">
+        <p class="service-icon">✦</p>
+        <h3>Art & AI</h3>
+        <p>From gallery installations to AI-assisted creative tools — we push boundaries while staying grounded in craft.</p>
       </div>
-      <div class="discipline-card">
-        <p class="discipline-icon">▶</p>
-        <h3>Prompt Eng</h3>
-        <p>Pushing the boundaries of AI-assisted creativity. Custom tools, workflows, and generative art.</p>
+      <div class="service-card">
+        <p class="service-icon">★</p>
+        <h3>Events & Community</h3>
+        <p>Pop-ups, showcases, festivals. We design experiences that bring people together and leave lasting impressions.</p>
       </div>
-      <div class="discipline-card">
-        <p class="discipline-icon">★</p>
-        <h3>Events</h3>
-        <p>IRL experiences that bring the community together. Pop-ups, showcases, and cultural programming.</p>
+      <div class="service-card">
+        <p class="service-icon">◉</p>
+        <h3>Brand & Identity</h3>
+        <p>Naming, visual identity, strategy, and positioning. We build brands that are memorable, relevant, and ready to scale.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-icon">▶</p>
+        <h3>Digital & Web</h3>
+        <p>Websites, apps, and interactive experiences. The digital presence your brand deserves — built to perform and built to last.</p>
       </div>
     </div>
   </div>
@@ -734,11 +835,11 @@ footer {
 <section id="gallery" class="gallery">
   <div class="gallery-inner">
     <div class="gallery-header reveal">
-      <p class="section-label">Selected Works</p>
-      <h2 class="section-title">The <span class="italic">Portfolio</span></h2>
+      <span class="section-label">Selected Work</span>
+      <h2 class="section-title">Recent Projects</h2>
     </div>
     <div class="gallery-grid reveal">
-      <div class="gallery-item featured">
+      <div class="gallery-item featured" id="work">
         <div class="gallery-placeholder">Featured Project</div>
         <div class="gallery-overlay">
           <h4>Untitled 001</h4>
@@ -777,42 +878,52 @@ footer {
   </div>
 </section>
 
-<section id="events" class="events">
-  <div class="events-inner reveal">
-    <p class="section-label">Stay Connected</p>
-    <h2 class="section-title">Coming <span class="italic">Soon</span></h2>
-    <div class="coming-soon">
-      <h4>Events & experiences are in development.</h4>
-      <p>Check back soon</p>
+<section id="community" class="community">
+  <div class="community-inner reveal">
+    <span class="section-label">The Foundation</span>
+    <h2>Built on Community,<br>Scaled Through Culture</h2>
+    <p>Every brand, every campaign, every event — it all starts with understanding the community it serves. We don't just reach audiences. We build movements that people actually want to be part of.</p>
+    <div class="community-stats">
+      <div class="stat-item">
+        <div class="num">5+</div>
+        <div class="label">Disciplines</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">IRL</div>
+        <div class="label">Events Hosted</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">∞</div>
+        <div class="label">Community</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">AI</div>
+        <div class="label">Augmented</div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="about" class="about">
-  <div class="about-inner reveal">
-    <p class="section-label">About Us</p>
-    <h2 class="section-title">The <span class="italic">Story</span></h2>
-    <div class="about-content">
+  <div class="about-inner">
+    <div class="about-header reveal">
+      <span class="section-label">About Us</span>
+      <h2 class="section-title">The Collective</h2>
+    </div>
+    <div class="about-content reveal">
       <div class="about-text">
-        <p><strong>4U2 Collective</strong> is a creative movement born from the belief that the best ideas live at the crossroads. We bring together musicians, designers, visual artists, technologists, and community builders under one roof.</p>
-        <p>We're not just making things — we're building a culture. From limited apparel drops to AI-generated art installations, from underground shows to prompt engineering workshops, everything we do is <em>for you, too</em>.</p>
-      </div>
-      <div class="about-stats">
-        <div class="stat">
-          <div class="stat-num">5+</div>
-          <div class="stat-label">Disciplines</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">—</div>
-          <div class="stat-label">Events</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">AI</div>
-          <div class="stat-label">Powered</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">4U2</div>
-          <div class="stat-label">Community</div>
+        <p><strong>4U2 Collective</strong> is a creative agency that believes the best ideas happen at the crossroads — where music meets fashion, where art meets AI, where community meets commerce.</p>
+        <p>We partner with brands, artists, and creators who want to build something real — not just campaigns, but culture. From the initial spark to the final execution, we bring the vision to life across every medium that matters.</p>
+        <p>San Francisco–based, globally minded. Built for the ones who are building.</p>
+        <div class="about-disciplines">
+          <span>Music</span>
+          <span>Fashion</span>
+          <span>Art</span>
+          <span>AI</span>
+          <span>Events</span>
+          <span>Branding</span>
+          <span>Web</span>
+          <span>Community</span>
         </div>
       </div>
     </div>
@@ -821,21 +932,20 @@ footer {
 
 <section id="contact" class="contact">
   <div class="contact-inner reveal">
-    <p class="section-label">Get in Touch</p>
-    <h2 class="section-title">Let's <span class="italic">Connect</span></h2>
-    <p class="section-desc">Interested in collaborating, attending an event, or joining the collective? Drop us a line.</p>
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Let's Build <em>Together</em></h2>
     <div class="contact-form">
       <div class="input-row">
-        <input type="text" placeholder="Name">
-        <input type="email" placeholder="Email">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
       </div>
-      <input type="text" placeholder="Subject">
-      <textarea placeholder="Message"></textarea>
+      <input type="text" placeholder="Company / Brand (optional)">
+      <textarea placeholder="Tell us about your project..."></textarea>
       <div class="form-footer">
         <label class="email-opt">
-          <input type="checkbox"> Subscribe to updates
+          <input type="checkbox"> Join our community list
         </label>
-        <button class="btn btn-primary" type="button">Send</button>
+        <button class="btn btn-primary" type="button">Send Message</button>
       </div>
     </div>
   </div>
@@ -843,14 +953,14 @@ footer {
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">4U2 <span class="italic">.</span></div>
+    <div class="footer-brand">4U2 <span>.</span></div>
     <div class="footer-links">
       <a href="https://instagram.com/4u2collective/" target="_blank" rel="noopener">Instagram</a>
       <a href="#">Twitter</a>
       <a href="#">SoundCloud</a>
       <a href="#">TikTok</a>
     </div>
-    <p class="footer-copy">© 2026 4U2 Collective — All Rights Reserved</p>
+    <p class="footer-copy">© 2026 4U2 Collective — All Rights Reserved — San Francisco, CA</p>
   </div>
 </footer>
 

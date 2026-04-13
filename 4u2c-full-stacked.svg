@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180">
-  <rect width="300" height="180" fill="#FAF9F7"/>
-  <!-- Corner accents -->
-  <line x1="20" y1="30" x2="40" y2="30" stroke="#8B7355" stroke-width="1"/>
-  <line x1="20" y1="30" x2="20" y2="50" stroke="#8B7355" stroke-width="1"/>
-  <line x1="280" y1="30" x2="260" y2="30" stroke="#8B7355" stroke-width="1"/>
-  <line x1="280" y1="30" x2="280" y2="50" stroke="#8B7355" stroke-width="1"/>
-  <line x1="20" y1="150" x2="40" y2="150" stroke="#8B7355" stroke-width="1"/>
-  <line x1="20" y1="150" x2="20" y2="130" stroke="#8B7355" stroke-width="1"/>
-  <line x1="280" y1="150" x2="260" y2="150" stroke="#8B7355" stroke-width="1"/>
-  <line x1="280" y1="150" x2="280" y2="130" stroke="#8B7355" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 175" width="280" height="175">
+  <rect width="280" height="175" fill="#F7F9F8"/>
+  <!-- Corner accents - green and blue -->
+  <line x1="20" y1="28" x2="38" y2="28" stroke="#4A7C59" stroke-width="1.5"/>
+  <line x1="20" y1="28" x2="20" y2="46" stroke="#4A7C59" stroke-width="1.5"/>
+  <line x1="260" y1="28" x2="242" y2="28" stroke="#4A6B7C" stroke-width="1.5"/>
+  <line x1="260" y1="28" x2="260" y2="46" stroke="#4A6B7C" stroke-width="1.5"/>
+  <line x1="20" y1="147" x2="38" y2="147" stroke="#4A7C59" stroke-width="1.5"/>
+  <line x1="20" y1="147" x2="20" y2="129" stroke="#4A7C59" stroke-width="1.5"/>
+  <line x1="260" y1="147" x2="242" y2="147" stroke="#4A6B7C" stroke-width="1.5"/>
+  <line x1="260" y1="147" x2="260" y2="129" stroke="#4A6B7C" stroke-width="1.5"/>
   <!-- 4U2 -->
-  <text x="150" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="90" font-weight="400" fill="#1A1A1A" text-anchor="middle">4U2</text>
+  <text x="140" y="95" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="400" fill="#1A2E23" text-anchor="middle">4U2</text>
   <!-- COLLECTIVE -->
-  <text x="150" y="145" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="400" letter-spacing="8" fill="#8B7355" text-anchor="middle">COLLECTIVE</text>
+  <text x="140" y="138" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-weight="400" letter-spacing="7" fill="#4A7C59" text-anchor="middle">COLLECTIVE</text>
 </svg>
